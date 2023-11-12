@@ -1,0 +1,27 @@
+.fundo {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 0px;
+    background-image: url("../img/Papel_reciclavel.png");
+}
+
+.dourado {
+    color: #DBCB3A;
+}
+
+.txt-branco, .txt-branco-dourado {
+    color: #F0F0F0;
+}
+
+.txt-branco-dourado:hover {
+    color: #DBCB3A;
+}
+
+.bg-dourado {
+    background-color: #DBCB3A;
+}
+
+.bg-verde {
+    background-color: #004B23;
+}
+
