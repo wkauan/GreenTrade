@@ -1,11 +1,92 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="shortcut icon" href="{% static 'img/doritos.webp' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>GreenTrade</title>
 </head>
-<body>
-    <h1>GreenTrade</h1>
+
+<body class="fundo">
+    {% if messages %}
+    <div class="alert alert-danger" role="alert">
+        <ul class="mb-0">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- Navbar -->
+    <header>
+        <nav class="shadown-md w-full fixed top-0 left-0">
+            <div class="md:flex items-center justify-between py-4 md:px-25 px-7 bg-verde">
+                <a class="font-medium text-2xl cursor-pointer txt-branco"
+                    href="{% url 'core:index' %}">Green<span class="dourado">Trade</span></a>
+                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button> -->
+                <div class="flex flex-col md:flex-row py-4 md:space-x-10">
+                    <a class="txt-branco-dourado hover:font-bold" href="{% url 'core:ticket' %}">Ticket</a>
+                    <a class="txt-branco-dourado hover:font-bold" href="{% url 'core:coleta' %}">Pontos de coleta</a>
+                    <a class="txt-branco-dourado hover:font-bold" href="{% url 'core:material' %}">
+                        Materiais recicláveis
+                    </a>
+                </div>
+                <div class="w-20 bg-dourado text-white rounded-lg p-1 text-center">
+                    <a class="font-bold" href="{% url 'core:login' %}">Login</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Corpo do site -->
+    <div class="block h-screen md:mt-40 mt-52">
+        <h1 class="font-bold text-3xl text-center">Sobre o projeto</h1>
+        <div class="md:flex justify-center p mt-6 md:space-x-16 space-y-4">
+            <section class="max-w-sm">
+                <p class="">
+                    O GreenTrade, uma iniciativa inovadora em prol da sustentabilidade, foi concebido com o
+                    objetivo de transformar a reciclagem em uma experiência colaborativa e recompensadora. Esta
+                    plataforma busca endereçar os desafios ambientais contemporâneos, estabelecendo uma ponte entre
+                    empresas e
+                    consumidores para promover o consumo e produção responsáveis, alinhados com os Objetivos de
+                    Desenvolvimento
+                    Sustentável (ODS), especialmente o ODS 12 - Consumo e Produção Responsáveis.</p>
+            </section>
+            <section class="w-60 md:w-full md:max-w-xs">
+                <img src="{% static 'img/arroz.jpg' %}" alt="img temporaria">
+            </section>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="w-full md:flex md:flex-row justify-around text-center bg-verde txt-branco left-0 space-y-4 md:space-y-0">
+        <dl>
+            <dt class="font-bold">Telefone</dt>
+            <dd><a class="hover:text-blue-200" href="tel:+55 (19) 99999-9999">(19) 99999-9999</a></dd>
+        </dl>
+        <dl>
+            <dt class="font-bold">E-mail</dt>
+            <dd><a class="hover:text-blue-200" href="mailto:contato@greentrade.com">contato@greentrade.com</a></dd>
+        </dl>
+        <dl>
+            <dt class="font-bold">Github</dt>
+            <dd><a class="hover:text-blue-200" href="https://github.com/wkauan/GreenTrade.git">GreenTrade</a></dd>
+        </dl>
+    </footer>
+    <hr/>
+    <div class="w-full text-center text-sm py-2 txt-branco bg-verde">
+        <p>©GreenTrade. Todos os direitos reservados.</p>
+    </div>
 </body>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
 </html>
