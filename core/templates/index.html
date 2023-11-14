@@ -24,22 +24,22 @@
     <!-- Navbar -->
     <header>
         <nav class="shadown-md w-full fixed top-0 left-0">
-            <div class="md:flex items-center justify-between py-4 md:px-25 px-7 bg-verde">
-                <a class="font-medium text-2xl cursor-pointer txt-branco"
-                    href="{% url 'core:index' %}">Green<span class="dourado">Trade</span></a>
+            <div class="md:flex items-center justify-between py-4 md:px-25 px-7 bg-[#004B23]">
+                <a class="font-medium text-2xl cursor-pointer text-[#F0F0F0]" href="{% url 'core:index' %}">Green<span
+                        class="text-[#DBCB3A]">Trade</span></a>
                 <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button> -->
                 <div class="flex flex-col md:flex-row py-4 md:space-x-10">
-                    <a class="txt-branco-dourado hover:font-bold" href="{% url 'core:ticket' %}">Ticket</a>
-                    <a class="txt-branco-dourado hover:font-bold" href="{% url 'core:coleta' %}">Pontos de coleta</a>
-                    <a class="txt-branco-dourado hover:font-bold" href="{% url 'core:material' %}">
+                    <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold" href="{% url 'core:ticket' %}">Ticket</a>
+                    <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold" href="{% url 'core:coleta' %}">Pontos de coleta</a>
+                    <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold" href="{% url 'core:material' %}">
                         Materiais recicláveis
                     </a>
                 </div>
-                <div class="w-20 bg-dourado text-white rounded-lg p-1 text-center">
+                <div class="w-20 bg-[#DBCB3A] text-white rounded-lg p-1 text-center">
                     <a class="font-bold" href="{% url 'core:login' %}">Login</a>
                 </div>
             </div>
@@ -61,13 +61,14 @@
                     Sustentável (ODS), especialmente o ODS 12 - Consumo e Produção Responsáveis.</p>
             </section>
             <section class="w-60 md:w-full md:max-w-sm">
-                <img src="{% static 'img/lixeira.png' %}" alt="img temporaria">
+                <img src="{% static 'img/lixeira.png' %}" alt="lixeira">
             </section>
         </div>
     </div>
 
     <!-- footer -->
-    <footer class="w-full md:flex md:flex-row justify-around text-center bg-verde txt-branco left-0 space-y-4 md:space-y-0">
+    <footer
+        class="w-full md:flex md:flex-row justify-around text-center bg-[#004B23] text-[#F0F0F0] left-0 space-y-4 md:space-y-0">
         <dl>
             <dt class="font-bold">Telefone</dt>
             <dd><a class="hover:text-blue-200" href="tel:+55 (19) 99999-9999">(19) 99999-9999</a></dd>
@@ -81,8 +82,8 @@
             <dd><a class="hover:text-blue-200" href="https://github.com/wkauan/GreenTrade.git">GreenTrade</a></dd>
         </dl>
     </footer>
-    <hr/>
-    <div class="w-full text-center text-sm py-2 txt-branco bg-verde">
+    <hr />
+    <div class="w-full text-center text-sm py-2 text-[#F0F0F0] bg-[#004B23]">
         <p>©GreenTrade. Todos os direitos reservados.</p>
     </div>
 </body>
