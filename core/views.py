@@ -59,7 +59,7 @@ def coleta(request):
     return render(request, 'index;html')
 
 def ticket(request):
-    return render(request, 'index;html')
+    return render(request, 'ticket.html')
 
 def material(request):
     return render(request, 'index;html')
