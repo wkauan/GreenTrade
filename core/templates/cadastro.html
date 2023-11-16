@@ -28,10 +28,13 @@
         <a class="font-medium text-2xl cursor-pointer text-[#F0F0F0]" href="{% url 'core:index' %}">Green<span
             class="text-[#DBCB3A]">Trade</span></a>
         <div class="flex flex-col md:flex-row py-4 md:space-x-10">
-          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold" href="{% url 'core:ticket' %}">Ticket</a>
-          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold" href="{% url 'core:coleta' %}">Pontos de
+          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
+            href="{% url 'core:ticket' %}">Ticket</a>
+          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
+            href="{% url 'core:coleta' %}">Pontos de
             coleta</a>
-          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold" href="{% url 'core:material' %}">
+          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
+            href="{% url 'core:material' %}">
             Materiais recicláveis
           </a>
         </div>
@@ -42,53 +45,55 @@
     </nav>
   </header>
 
- <!-- Corpo do site -->
+  <!-- Corpo do site -->
   <div name="form" class="block h-screen md:mt-40 mt-64">
     <div class="flex justify-center">
 
       <!-- formulario -->
-      <form class="bg-[#004B23] rounded-lg text-[#F0F0F0] w-80 h-64 md:h-max" action="{% url 'core:cadastro' %}" method="post" id="cadastroForm"> {% csrf_token %}
-        <h1 class="text-center mb-5">Cadastro de Clientes</h1>
+      <form class="bg-[#004B23] rounded-lg text-[#F0F0F0] w-80 h-auto" action="{% url 'core:cadastro' %}"
+        method="post" id="cadastroForm"> {% csrf_token %}
+        <h1 class="text-center mb-5 mt-3 font-medium">Cadastro de Clientes</h1>
         <fieldset>
 
-           <!-- campo CPF -->
+          <!-- campo CPF -->
           <div class="mb-5 flex justify-center">
-            <label for="cpf" class="form-label">CPF</label>
-            <input type="text" minlength="11" maxlength="11" name="cpf" class="form-control" id="cpf">
+            <input type="text" minlength="11" maxlength="11" name="cpf" id="cpf"
+              class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="CPF" required>
           </div>
 
           <!-- campo Nome -->
           <div class="mb-5 flex justify-center">
-            <label for="nome" class="form-label">Nome</label>
-            <input type="text" minlength="7" maxlength="30" name="nome" class="form-control" id="nome">
+            <input type="text" minlength="7" maxlength="30" name="nome" id="nome"
+              class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Nome" required>
           </div>
 
           <!-- campo Endereço -->
           <div class="mb-5 flex justify-center">
-            <label for="endereco" class="form-label">Endereço</label>
-            <input type="text" minlength="10" maxlength="50" name="nome" class="form-control" id="endereco">
-          </div>
-
-          <!-- campo E-mail -->
-          <div class="mb-5 flex justify-center">
-            <label for="email" class="form-label">E-mail</label>
-            <input type="text" minlength="10" maxlength="50" name="email" class="form-control" id="email">
+            <input type="text" minlength="11" maxlength="11" name="nome" id="endereco"
+              class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Endereço" required>
           </div>
 
           <!-- campo Telefone -->
           <div class="mb-5 flex justify-center">
-            <label for="telefone" class="form-label">Telefone</label>
-            <input type="text" minlength="10" maxlength="11" name="telefone" class="form-control" id="telefone">
+            <input type="tel" minlength="10" maxlength="11" name="telefone" id="telefone"
+              class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Telefone" required>
+          </div>
+
+          <!-- campo E-mail -->
+          <div class="mb-5 flex justify-center">
+            <input type="email" minlength="10" maxlength="50" name="email" id="email"
+              class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="E-mail" required>
           </div>
 
           <!-- campo Senha -->
           <div class="mb-5 flex justify-center">
-            <label for="senha" class="form-label">Senha</label>
-            <input type="text" minlength="10" maxlength="50" name="senha" class="form-control" id="senha">
+            <input type="password" minlength="10" maxlength="50" name="senha" id="senha"
+              class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Senha" required>
           </div>
 
+           <!-- botão de acesso -->
           <div class="mb-3 text-center">
-            <button id="botao" type="submit" class="w-20 mt-5 mb-5 rounded-md bg-[#DBCB3A] font-bold">Cadastrar</button>
+            <button id="botao" type="submit" class="w-40 py-2 mt-5 mb-5 rounded-md bg-[#DBCB3A] font-bold text-lg">Cadastrar</button>
           </div>
         </fieldset>
       </form>
