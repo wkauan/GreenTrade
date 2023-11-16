@@ -22,24 +22,28 @@
     {% endif %}
 
     <!-- Navbar -->
-    <header>
-        <nav class="shadown-md w-full fixed top-0 left-0">
-            <div class="md:flex items-center justify-between py-4 md:px-25 px-7 bg-[#004B23]">
-                <a class="font-medium text-2xl cursor-pointer text-[#F0F0F0]" href="{% url 'core:index' %}">Green<span
-                        class="text-[#DBCB3A]">Trade</span></a>
-                <div class="flex flex-col md:flex-row py-4 md:space-x-10">
-                    <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold" href="{% url 'core:ticket' %}">Ticket</a>
-                    <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold" href="{% url 'core:coleta' %}">Pontos de coleta</a>
-                    <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold" href="{% url 'core:material' %}">
-                        Materiais recicláveis
-                    </a>
-                </div>
-                <div class="w-20 bg-[#DBCB3A] text-white rounded-lg p-1 text-center">
-                    <a class="font-bold" href="{% url 'core:login' %}">Login</a>
-                </div>
-            </div>
-        </nav>
-    </header>
+  <header>
+    <nav class="shadown-md w-full fixed top-0 left-0">
+      <div class="md:flex items-center justify-between py-4 md:px-25 px-7 bg-[#004B23]">
+        <a class="font-medium text-2xl cursor-pointer text-[#F0F0F0]" href="{% url 'core:index' %}">Green<span
+            class="text-[#DBCB3A]">Trade</span></a>
+        <div class="flex flex-col md:flex-row py-4 md:space-x-10">
+          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
+            href="{% url 'core:ticket' %}">Ticket</a>
+          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
+            href="{% url 'core:coleta' %}">Pontos de
+            coleta</a>
+          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
+            href="{% url 'core:material' %}">
+            Materiais recicláveis
+          </a>
+        </div>
+        <div class="w-20 bg-[#DBCB3A] text-white rounded-lg p-1 text-center">
+          <a class="font-bold" href="{% url 'core:login' %}">Login</a>
+        </div>
+      </div>
+    </nav>
+  </header>
 
     <!-- Corpo do site -->
     <div class="block h-screen md:mt-40 mt-52">
