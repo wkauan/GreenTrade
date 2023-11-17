@@ -1,4 +1,3 @@
-
 # utils.py
 from django.contrib.auth.hashers import check_password
 from .models import ClienteModel
