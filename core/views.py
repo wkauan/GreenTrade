@@ -45,6 +45,9 @@ def empresa(request):
             empresa.cnpj = form.data['cnpj']
             empresa.nome = form.data['nome']
             empresa.telefone = form.data['telefone']
+            empresa.endereco = request.POST.getlist('endereco')
+            empresa.email = form.data['email']
+            empresa.senha = form.data['senha']
             empresa.save()
             
     return render(request, 'empresa.html')
