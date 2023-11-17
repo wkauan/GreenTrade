@@ -11,7 +11,7 @@ class ClienteForm(forms.ModelForm):
 class EmpresaForm(forms.ModelForm):
     class meta:
         model = EmpresaModel
-        fields = ['nome','cnpj','telefone']
+        fields = ['nome','cnpj','telefone','endereco','email','senha']
 
 class LoginForm(forms.ModelForm):
     class meta:

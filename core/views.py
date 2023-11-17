@@ -3,6 +3,8 @@ from django.contrib import messages
 from .models import ClienteModel,EmpresaModel, LoginModel
 from .forms import ClienteForm,EmpresaForm, LoginForm
 from . import views
+from django.contrib.auth.hashers import check_password
+from .utils import validar
 
 # Create your views here.
 
@@ -21,7 +23,9 @@ def cadastro(request):
             cliente.cpf = form.data['cpf']
             cliente.nome = form.data['nome']
             cliente.telefone = form.data['telefone']
-            cliente.endereco = form.data['endereco']
+            cliente.endereco = request.POST.getlist('endereco')
+
+            #cliente.endereco = form.data['endereco']
             cliente.email = form.data['email']
             cliente.senha = form.data['senha']
             cliente.save()
@@ -41,12 +45,32 @@ def empresa(request):
             empresa.cnpj = form.data['cnpj']
             empresa.nome = form.data['nome']
             empresa.telefone = form.data['telefone']
+            empresa.endereco = request.POST.getlist('endereco')
+            empresa.email = form.data['email']
+            empresa.senha = form.data['senha']
             empresa.save()
             
     return render(request, 'empresa.html')
 
 
 def login(request):
+    
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+
+        validado, usuario = validar(email, senha)
+
+        if validado:
+            # Usuário validado
+            return render(request, 'index.html', {'usuario': usuario})
+        else:
+            # Usuário não validado
+            return render(request, 'login.html', {'erro': 'Credenciais inválidas'})
+    else:
+        return render(request, 'login.html')
+
+
     return render(request, 'login.html')
 
 def pontos(request):
