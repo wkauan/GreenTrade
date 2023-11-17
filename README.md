@@ -16,6 +16,7 @@ cd GreenTrade
 python -m venv .venv
 .\.venv\Scripts\activate
 pip install -r requirements.txt
+cd code
 python manage.py runserver
 ```
 
@@ -29,6 +30,7 @@ cd GreenTrade
 virtualenv -p python3 venv
 source venv/bin/activate
 pip install -r requirements.txt
+cd code
 python manage.py runserver
 ```
 
