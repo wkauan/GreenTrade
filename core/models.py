@@ -15,4 +15,4 @@ class EmpresaModel(models.Model):
 
 class LoginModel(models.Model):
     email = models.CharField('email', max_length=30)
-    senha = models.CharField('email', max_length=15)
+    senha = models.CharField('senha', max_length=15)
