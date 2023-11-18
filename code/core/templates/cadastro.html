@@ -55,6 +55,12 @@
         method="post" id="cadastroForm"> {% csrf_token %}
         <h1 class="text-center mb-5 mt-3 font-medium">Cadastro de Clientes</h1>
         <fieldset>
+          <!-- campo Nome -->
+          <div class="mb-5 flex justify-center">
+            <input type="text" minlength="7" maxlength="30" name="nome" id="nome"
+              class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Nome" required>
+          </div>
+
 
           <!-- campo CPF -->
           <div class="mb-5 flex justify-center">
@@ -62,23 +68,18 @@
               class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="CPF" required>
           </div>
 
-          <!-- campo Nome -->
-          <div class="mb-5 flex justify-center">
-            <input type="text" minlength="7" maxlength="30" name="nome" id="nome"
-              class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Nome" required>
+           <!-- campo Telefone -->
+           <div class="mb-5 flex justify-center">
+            <input type="tel" minlength="10" maxlength="11" name="telefone" id="telefone"
+              class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Telefone" required>
           </div>
 
           <!-- campo Endereço -->
           <div class="mb-5 flex justify-center">
-            <input type="text" minlength="11" maxlength="11" name="nome" id="endereco"
+            <input type="text" minlength="5" maxlength="30" name="endereco" id="endereco"
               class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Endereço" required>
           </div>
 
-          <!-- campo Telefone -->
-          <div class="mb-5 flex justify-center">
-            <input type="tel" minlength="10" maxlength="11" name="telefone" id="telefone"
-              class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Telefone" required>
-          </div>
 
           <!-- campo E-mail -->
           <div class="mb-5 flex justify-center">
@@ -91,6 +92,14 @@
             <input type="password" minlength="10" maxlength="50" name="senha" id="senha"
               class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Senha" required>
           </div>
+          
+          
+
+         
+
+          
+
+          
 
            <!-- botão de acesso -->
           <div class="mb-3 text-center">

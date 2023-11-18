@@ -55,16 +55,28 @@
         <h1 class="text-center mb-5 mt-3 font-medium">Cadastro de Empresa</h1>
         <fieldset>
 
+          <!-- campo nome -->
+          <div class="mb-5 flex justify-center">
+            <input type="text" minlength="7" maxlength="30" name="nome" id="nome"
+              class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Nome" required>
+          </div>
+
           <!-- campo CNPJ -->
           <div class="mb-5 flex justify-center">
             <input type="text" minlength="14" maxlength="14" name="CNPJ" id="CNPJ"
               class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="CNPJ" required>
           </div>
 
-          <!-- campo nome -->
-          <div class="mb-5 flex justify-center">
-            <input type="text" minlength="7" maxlength="30" name="nome" id="nome"
-              class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Nome" required>
+           <!-- campo telefone -->
+           <div class="mb-5 flex justify-center">
+            <input type="text" minlength="10" maxlength="11" name="telefone" id="telefone"
+              class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Telefone" required>
+          </div>
+
+           <!-- campo Endereço -->
+           <div class="mb-5 flex justify-center">
+            <input type="text" minlength="5" maxlength="30" name="endereco" id="endereco"
+              class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Endereço" required>
           </div>
 
           <!-- campo E-mail -->
@@ -78,12 +90,7 @@
             <input type="text" minlength="10" maxlength="50" name="senha" id="senha"
               class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Senha" required>
           </div>
-
-          <!-- campo telefone -->
-          <div class="mb-5 flex justify-center">
-            <input type="text" minlength="10" maxlength="11" name="telefone" id="telefone"
-              class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Telefone" required>
-          </div>
+          
 
           <!-- botão de acesso -->
           <div class="mb-3 text-center">

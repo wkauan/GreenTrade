@@ -23,9 +23,7 @@ def cadastro(request):
             cliente.cpf = form.data['cpf']
             cliente.nome = form.data['nome']
             cliente.telefone = form.data['telefone']
-            cliente.endereco = request.POST.getlist('endereco')
-
-            #cliente.endereco = form.data['endereco']
+            cliente.endereco = form.data['endereco']
             cliente.email = form.data['email']
             cliente.senha = form.data['senha']
             cliente.save()
@@ -45,7 +43,7 @@ def empresa(request):
             empresa.cnpj = form.data['cnpj']
             empresa.nome = form.data['nome']
             empresa.telefone = form.data['telefone']
-            empresa.endereco = request.POST.getlist('endereco')
+            empresa.endereco = form.data['endereco']
             empresa.email = form.data['email']
             empresa.senha = form.data['senha']
             empresa.save()
