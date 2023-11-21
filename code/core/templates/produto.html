@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>GreenTrade</title>
+</head>
+
+<body class="fundo font">
+    {% if messages %}
+    <div class="alert alert-danger" role="alert">
+        <ul class="mb-0">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- Navbar -->
+  <header>
+    <nav class="shadown-md w-full fixed top-0 left-0">
+      <div class="md:flex items-center justify-between py-4 md:px-25 px-7 bg-[#004B23]">
+        <a class="font-medium text-2xl cursor-pointer text-[#F0F0F0]" href="{% url 'core:index' %}">Green<span
+            class="text-[#DBCB3A]">Trade</span></a>
+        <div class="flex flex-col md:flex-row py-4 md:space-x-10">
+          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
+            href="{% url 'core:ticket' %}">Ticket</a>
+          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
+            href="{% url 'core:coleta' %}">Pontos de
+            coleta</a>
+          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
+            href="{% url 'core:material' %}">
+            Materiais recicláveis
+          </a>
+        </div>
+        <div class="w-20 bg-[#DBCB3A] text-white rounded-lg p-1 text-center hover:scale-105 transition-all">
+          <a class="font-bold" href="{% url 'core:login' %}">Login</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+    <!-- Corpo do site -->
+    <div class="block h-screen md:mt-40 mt-52">
+        <h1 class="font-bold text-3xl text-center">Em construção</h1>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer
+        class="w-full md:flex md:flex-row justify-around text-center bg-[#004B23] text-[#F0F0F0] left-0 space-y-4 md:space-y-0">
+        <dl>
+            <dt class="font-bold">Telefone</dt>
+            <dd><a class="hover:text-blue-200" href="tel:+55 (19) 99999-9999">(19) 99999-9999</a></dd>
+        </dl>
+        <dl>
+            <dt class="font-bold">E-mail</dt>
+            <dd><a class="hover:text-blue-200" href="mailto:contato@greentrade.com">contato@greentrade.com</a></dd>
+        </dl>
+        <dl>
+            <dt class="font-bold">Github</dt>
+            <dd><a class="hover:text-blue-200" href="https://github.com/wkauan/GreenTrade.git">GreenTrade</a></dd>
+        </dl>
+    </footer>
+    <hr />
+    <div class="w-full text-center text-sm py-2 text-[#F0F0F0] bg-[#004B23]">
+        <p>©GreenTrade. Todos os direitos reservados.</p>
+    </div>
+</body>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+</html>
