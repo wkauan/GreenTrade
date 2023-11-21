@@ -39,7 +39,7 @@
             Materiais recicláveis
           </a>
         </div>
-        <div class="w-20 bg-[#DBCB3A] text-white rounded-lg p-1 text-center">
+        <div class="w-20 bg-[#DBCB3A] text-white rounded-lg p-1 text-center hover:scale-105 transition-all">
           <a class="font-bold" href="{% url 'core:login' %}">Login</a>
         </div>
       </div>
@@ -51,16 +51,16 @@
     <div class="flex justify-center">
 
       <!-- formulario -->
-      <form class="bg-[#004B23] rounded-lg text-[#F0F0F0] w-80 h-auto" action="{% url 'core:cadastro' %}"
-        method="post" id="cadastroForm"> {% csrf_token %}
+      <form class="bg-[#004B23] rounded-lg text-[#F0F0F0] w-80 h-auto" action="{% url 'core:cadastro' %}" method="post"
+        id="cadastroForm"> {% csrf_token %}
         <h1 class="text-center mb-5 mt-3 font-medium">Cadastro de Clientes</h1>
         <fieldset>
+
           <!-- campo Nome -->
           <div class="mb-5 flex justify-center">
             <input type="text" minlength="7" maxlength="30" name="nome" id="nome"
               class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Nome" required>
           </div>
-
 
           <!-- campo CPF -->
           <div class="mb-5 flex justify-center">
@@ -68,8 +68,8 @@
               class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="CPF" required>
           </div>
 
-           <!-- campo Telefone -->
-           <div class="mb-5 flex justify-center">
+          <!-- campo Telefone -->
+          <div class="mb-5 flex justify-center">
             <input type="tel" minlength="10" maxlength="11" name="telefone" id="telefone"
               class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Telefone" required>
           </div>
@@ -79,7 +79,6 @@
             <input type="text" minlength="5" maxlength="30" name="endereco" id="endereco"
               class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Endereço" required>
           </div>
-
 
           <!-- campo E-mail -->
           <div class="mb-5 flex justify-center">
@@ -92,18 +91,11 @@
             <input type="password" minlength="10" maxlength="50" name="senha" id="senha"
               class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Senha" required>
           </div>
-          
-          
 
-         
-
-          
-
-          
-
-           <!-- botão de acesso -->
+          <!-- botão de acesso -->
           <div class="mb-3 text-center">
-            <button id="botao" type="submit" class="w-40 py-2 mt-5 mb-5 rounded-md bg-[#DBCB3A] font-bold text-lg">Cadastrar</button>
+            <button id="botao" type="submit"
+              class="w-40 py-2 mt-5 mb-5 rounded-md bg-[#DBCB3A] font-bold text-lg hover:scale-105 transition-all">Cadastrar</button>
           </div>
         </fieldset>
       </form>

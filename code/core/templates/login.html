@@ -29,14 +29,17 @@
         <a class="font-medium text-2xl cursor-pointer text-[#F0F0F0]" href="{% url 'core:index' %}">Green<span
             class="text-[#DBCB3A]">Trade</span></a>
         <div class="flex flex-col md:flex-row py-4 md:space-x-10">
-          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100" href="{% url 'core:ticket' %}">Ticket</a>
-          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100" href="{% url 'core:coleta' %}">Pontos de
+          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
+            href="{% url 'core:ticket' %}">Ticket</a>
+          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
+            href="{% url 'core:coleta' %}">Pontos de
             coleta</a>
-          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100" href="{% url 'core:material' %}">
+          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
+            href="{% url 'core:material' %}">
             Materiais recicláveis
           </a>
         </div>
-        <div class="w-20 bg-[#DBCB3A] text-white rounded-lg p-1 text-center">
+        <div class="w-20 bg-[#DBCB3A] text-white rounded-lg p-1 text-center hover:scale-105 transition-all">
           <a class="font-bold" href="{% url 'core:cadastro' %}">Cadastrar</a>
         </div>
       </div>
@@ -48,16 +51,16 @@
     <div class="flex justify-center">
 
       <!-- formulario -->
-      <form class="bg-[#004B23] rounded-lg text-[#F0F0F0] w-80 h-auto" action="{% url 'core:login' %}"
-        method="post" id="cadastroForm">
+      <form class="bg-[#004B23] rounded-lg text-[#F0F0F0] w-80 h-auto" action="{% url 'core:login' %}" method="post"
+        id="cadastroForm">
         {% csrf_token %}
         <h1 class="text-center mb-5 mt-3 font-medium">Acessar</h1>
         <fieldset>
 
-          <!-- campo E-mail -->
+          <!-- Campo cpf -->
           <div class="mb-5 flex justify-center">
-            <input type="email" minlength="10" maxlength="50" name="email"
-              class="px-8 py-2 rounded-lg text-black placeholder:text-black" id="email" placeholder="E-mail" required>
+            <input type="text" minlength="11" maxlength="11" name="cpf" id="cpf"
+              class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="CPF" required>
           </div>
 
           <!-- campo senha -->
@@ -69,16 +72,19 @@
           <!-- links de escolha de tipo de cadastro -->
           <div class="text-[#F0F0F0] text-center text-sm">
             <div class="mt-2">
-              <a class="hover:underline hover:text-blue-200 mb-3 transition-all duration-200 delay-100" href="{% url 'core:cadastro' %}">Deseja cadastrar usuário?</a>
+              <a class="hover:underline hover:text-blue-200 mb-3 transition-all duration-200 delay-100"
+                href="{% url 'core:cadastro' %}">Deseja cadastrar usuário?</a>
             </div>
             <div class="mt-2">
-              <a class="hover:underline hover:text-blue-200 mb-3 transition-all duration-200 delay-100" href="{% url 'core:empresa' %}">Deseja cadastrar empresa?</a>
+              <a class="hover:underline hover:text-blue-200 mb-3 transition-all duration-200 delay-100"
+                href="{% url 'core:empresa' %}">Deseja cadastrar empresa?</a>
             </div>
 
           </div>
           <!-- botão para Acessar -->
           <div class="mb-3 text-center">
-            <button id="botao" type="submit" class="w-40 py-2 mt-5 mb-5 rounded-md bg-[#DBCB3A] font-bold text-lg">Entrar</button>
+            <button id="botao" type="submit"
+              class="w-40 py-2 mt-5 mb-5 rounded-md bg-[#DBCB3A] font-bold text-lg hover:scale-105 transition-all">Entrar</button>
           </div>
         </fieldset>
       </form>
