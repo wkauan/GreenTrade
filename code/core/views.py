@@ -75,7 +75,7 @@ def pontos(request):
     return render(request, 'index;html')
 
 def produto(request):
-    return render(request, 'index;html')
+    return render(request, 'produto.html')
 
 def coleta(request):
     return render(request, 'index;html')
@@ -84,4 +84,4 @@ def ticket(request):
     return render(request, 'ticket.html')
 
 def material(request):
-    return render(request, 'index;html')
+    return render(request, 'material.html')
