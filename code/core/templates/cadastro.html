@@ -25,7 +25,7 @@
   <!-- Navbar -->
   <header>
     <nav class="shadown-md w-full fixed top-0 left-0">
-      <div class="md:flex items-center justify-between py-4 md:px-25 px-7 bg-[#004B23]">
+      <div class="md:flex items-center justify-between py-4 md:px-25 px-7 bg-gradient-to-r from-[#004B23] to-green-700">
         <a class="font-medium text-2xl cursor-pointer text-[#F0F0F0]" href="{% url 'core:index' %}">Green<span
             class="text-[#DBCB3A]">Trade</span></a>
         <div class="flex flex-col md:flex-row py-4 md:space-x-10">
@@ -38,6 +38,8 @@
             href="{% url 'core:material' %}">
             Materiais recicláveis
           </a>
+          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
+            href="{% url 'core:pontos' %}">Meus pontos</a>
         </div>
         <div class="w-20 bg-[#DBCB3A] text-white rounded-lg p-1 text-center hover:scale-105 transition-all">
           <a class="font-bold" href="{% url 'core:login' %}">Login</a>
@@ -51,7 +53,7 @@
     <div class="flex justify-center">
 
       <!-- formulario -->
-      <form class="bg-[#004B23] rounded-lg text-[#F0F0F0] w-80 h-auto" action="{% url 'core:cadastro' %}" method="post"
+      <form class="bg-gradient-to-r from-[#004B23] to-green-700 rounded-lg text-[#F0F0F0] w-80 h-auto" action="{% url 'core:cadastro' %}" method="post"
         id="cadastroForm"> {% csrf_token %}
         <h1 class="text-center mb-5 mt-3 font-medium">Cadastro de Clientes</h1>
         <fieldset>

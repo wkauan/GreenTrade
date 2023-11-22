@@ -3,28 +3,28 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>GreenTrade</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <title>GreenTrade</title>
 </head>
 
 <body class="fundo font">
-    {% if messages %}
-    <div class="alert alert-danger" role="alert">
-        <ul class="mb-0">
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    {% endif %}
+  {% if messages %}
+  <div class="alert alert-danger" role="alert">
+    <ul class="mb-0">
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
 
-    <!-- Navbar -->
+  <!-- Navbar -->
   <header>
     <nav class="shadown-md w-full fixed top-0 left-0">
-      <div class="md:flex items-center justify-between py-4 md:px-25 px-7 bg-[#004B23]">
+      <div class="md:flex items-center justify-between py-4 md:px-25 px-7 bg-gradient-to-r from-[#004B23] to-green-700">
         <a class="font-medium text-2xl cursor-pointer text-[#F0F0F0]" href="{% url 'core:index' %}">Green<span
             class="text-[#DBCB3A]">Trade</span></a>
         <div class="flex flex-col md:flex-row py-4 md:space-x-10">
@@ -37,6 +37,8 @@
             href="{% url 'core:material' %}">
             Materiais recicláveis
           </a>
+          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
+            href="{% url 'core:pontos' %}">Meus pontos</a>
         </div>
         <div class="w-20 bg-[#DBCB3A] text-white rounded-lg p-1 text-center hover:scale-105 transition-all">
           <a class="font-bold" href="{% url 'core:login' %}">Login</a>
@@ -45,32 +47,49 @@
     </nav>
   </header>
 
-    <!-- Corpo do site -->
-    <div class="block h-screen md:mt-40 mt-52">
-        <h1 class="font-bold text-3xl text-center">Em construção</h1>
-        </div>
-    </div>
+  <!-- Corpo do site -->
+  <div class="block h-screen md:mt-40 mt-52">
+    <h1 class="font-bold text-3xl text-center">Verifique a sua pontuação</h1>
+    <p class="mt-2 text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae sit, vero in dolore minima eligendi. Ipsam quasi
+      sequi libero non asperiores culpa saepe ut! Enim architecto similique cum numquam id!</p>
 
-    <!-- footer -->
-    <footer
-        class="w-full md:flex md:flex-row justify-around text-center bg-[#004B23] text-[#F0F0F0] left-0 space-y-4 md:space-y-0">
-        <dl>
-            <dt class="font-bold">Telefone</dt>
-            <dd><a class="hover:text-blue-200" href="tel:+55 (19) 99999-9999">(19) 99999-9999</a></dd>
-        </dl>
-        <dl>
-            <dt class="font-bold">E-mail</dt>
-            <dd><a class="hover:text-blue-200" href="mailto:contato@greentrade.com">contato@greentrade.com</a></dd>
-        </dl>
-        <dl>
-            <dt class="font-bold">Github</dt>
-            <dd><a class="hover:text-blue-200" href="https://github.com/wkauan/GreenTrade.git">GreenTrade</a></dd>
-        </dl>
-    </footer>
-    <hr />
-    <div class="w-full text-center text-sm py-2 text-[#F0F0F0] bg-[#004B23]">
-        <p>©GreenTrade. Todos os direitos reservados.</p>
+    <!-- verifica pontuação -->
+    <div class="flex mt-5 justify-center">
+      <div class="text-center rounded-lg text-[#F0F0F0] w-80 h-auto bg-gradient-to-r from-[#004B23] to-green-700">
+        <div>
+          <p class="mt-5 text-[#F0F0F0]">Parabéns! {Nome cliente}</p>
+          <p class="mt-5 text-[#F0F0F0]">Você possui {Pontos} pontos</p>
+        </div>
+
+        <!-- botão para atualizar -->
+        <div class="mb-3 text-center">
+          <button id="botao" type="submit"
+            class="w-40 py-2 mt-5 mb-5 rounded-md bg-[#DBCB3A] font-bold text-lg hover:scale-105 transition-all">Atualizar</button>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- footer -->
+  <footer
+    class="w-full md:flex md:flex-row justify-around text-center bg-[#004B23] text-[#F0F0F0] left-0 space-y-4 md:space-y-0">
+    <dl>
+      <dt class="font-bold">Telefone</dt>
+      <dd><a class="hover:text-blue-200" href="tel:+55 (19) 99999-9999">(19) 99999-9999</a></dd>
+    </dl>
+    <dl>
+      <dt class="font-bold">E-mail</dt>
+      <dd><a class="hover:text-blue-200" href="mailto:contato@greentrade.com">contato@greentrade.com</a></dd>
+    </dl>
+    <dl>
+      <dt class="font-bold">Github</dt>
+      <dd><a class="hover:text-blue-200" href="https://github.com/wkauan/GreenTrade.git">GreenTrade</a></dd>
+    </dl>
+  </footer>
+  <hr />
+  <div class="w-full text-center text-sm py-2 text-[#F0F0F0] bg-[#004B23]">
+    <p>©GreenTrade. Todos os direitos reservados.</p>
+  </div>
 </body>
 
 <script src="https://cdn.tailwindcss.com"></script>

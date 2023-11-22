@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>Ticket | GreenTrade</title>
+    <title>GreenTrade</title>
 </head>
 
 <body class="fundo font">
@@ -49,24 +49,15 @@
 
     <!-- Corpo do site -->
     <div class="block h-screen md:mt-40 mt-52">
-        <div class="md:flex justify-center p-6 md:p-0 mt-6 md:space-x-16 space-y-4">
-            <section class="md:max-w-sm">
-                <p class="font-medium mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper suscipit
-                    ante, luctus varius nunc interdum ut. Nullam urna dolor, gravida ut maximus sed, elementum et
-                    lectus. Mauris eleifend ultricies velit, condimentum congue tortor consequat sed. Suspendisse varius
-                    tortor eu iaculis iaculis. Vivamus aliquet orci eu eros tincidunt, vel efficitur sem varius. Mauris
-                    sed dapibus neque, sit amet lobortis risus. Mauris lorem magna, sollicitudin ut sodales non,
-                    accumsan eget est. Nunc hendrerit blandit facilisis. Maecenas eget lorem massa. Curabitur sed massa
-                    non leo varius interdum et non massa. In sit amet neque quis arcu eleifend lobortis. Proin ut
-                    placerat quam, et sollicitudin nisi. Pellentesque habitant morbi tristique senectus et netus et
-                    malesuada fames ac turpis egestas. Cras molestie ligula orci.</p>
-                <a class="font-bold text-[#004B23] hover:underline hover:text-[#228B22] transition-all duration-200 delay-100" href="{% url 'core:cadastro' %}">Deseja receber o Ticket?</a>
-            </section>
-            <section class="md:flex md:flex-row w-60 h-40 md:w-full md:max-w-sm gap-4 space-y-4 md:space-y-0">
-                <img class="rounded-lg" src="{% static 'img/cartao-frente.png' %}" alt="cartao-frente">
-                <img class="rounded-lg" src="{% static 'img/cartao-atras.png' %}" alt="cartao-atras">
-            </section>
-        </div>
+        <h1 class="font-bold text-3xl text-center">Os pontos de coletas disponívels são</h1>
+        <section class="p-8">
+            <ul class="list-disc pl-4 space-y-8">
+                <li>{Nome da empresa}, {Endereço}</li>
+                <li>{Nome da empresa}, {Endereço}</li>
+                <li>{Nome da empresa}, {Endereço}</li>
+                <li>{Nome da empresa}, {Endereço}</li>
+            </ul>
+        </section>
     </div>
 
     <!-- footer -->

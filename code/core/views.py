@@ -72,13 +72,13 @@ def login(request):
     return render(request, 'login.html')
 
 def pontos(request):
-    return render(request, 'index;html')
+    return render(request, 'pontos.html')
 
 def produto(request):
     return render(request, 'produto.html')
 
 def coleta(request):
-    return render(request, 'index;html')
+    return render(request, 'coleta.html')
 
 def ticket(request):
     return render(request, 'ticket.html')
