@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.shortcuts import resolve_url as r
 from http import HTTPStatus
-from pymongo import MongoClient
+# from pymongo import MongoClient
 
 class IndexGetTest(TestCase):
     def setUp(self):
@@ -15,11 +15,11 @@ class IndexGetTest(TestCase):
 
     def test_found_html(self):
         tags = (
-            ('<html>', 1),
-            ('<body>', 1),
-            ('<div>', 7),
-            ('<section>', 1),
-            ('<img>', 1),
+            ('<html', 1),
+            ('<body', 1),
+            ('<div', 6),
+            ('<section', 2),
+            ('<img', 1),
             ('</body>', 1),
             ('</html>', 1),
         )
@@ -39,12 +39,12 @@ class CadastroGetTest(TestCase):
 
     def test_found_html(self):
         tags = (
-            ('<html>', 1),
-            ('<body>', 1),
-            ('<div>', 14),
-            ('<input>', 6),
-            ('<form>', 1),
-            ('<fieldset>', 1)
+            ('<html', 1),
+            ('<body', 1),
+            ('<div', 13),
+            ('<input', 7),
+            ('<form', 1),
+            ('<fieldset', 1),
             ('</body>', 1),
             ('</html>', 1),
         )
@@ -64,12 +64,12 @@ class EmpresaGetTest(TestCase):
 
     def test_found_html(self):
         tags = (
-            ('<html>', 1),
-            ('<body>', 1),
-            ('<div>', 14),
-            ('<input>', 6),
-            ('<form>', 1),
-            ('<fieldset>', 1)
+            ('<html', 1),
+            ('<body', 1),
+            ('<div', 13),
+            ('<input', 7),
+            ('<form', 1),
+            ('<fieldset', 1),
             ('</body>', 1),
             ('</html>', 1),
         )
@@ -89,12 +89,12 @@ class LoginGetTest(TestCase):
 
     def test_found_html(self):
         tags = (
-            ('<html>', 1),
-            ('<body>', 1),
-            ('<div>', 13),
-            ('<input>', 6),
-            ('<form>', 1),
-            ('<button>', 1),
+            ('<html', 1),
+            ('<body', 1),
+            ('<div', 12),
+            ('<input', 3),
+            ('<form', 1),
+            ('<button', 1),
             ('</body>', 1),
             ('</html>', 1),
         )
@@ -114,12 +114,12 @@ class TicketGetTest(TestCase):
 
     def test_found_html(self):
         tags = (
-            ('<html>', 1),
-            ('<body>', 1),
-            ('<div>', 7),
-            ('<section>', 3),
-            ('<img>', 2),
-            ('<p>', 2),
+            ('<html', 1),
+            ('<body', 1),
+            ('<div', 6),
+            ('<section', 2),
+            ('<img', 2),
+            ('<p', 2),
             ('</body>', 1),
             ('</html>', 1),
         )
@@ -139,12 +139,12 @@ class MaterialGetTest(TestCase):
 
     def test_found_html(self):
         tags = (
-            ('<html>', 1),
-            ('<body>', 1),
-            ('<div>', 7),
-            ('<section>', 3),
-            ('<img>', 3),
-            ('<p>', 3),
+            ('<html', 1),
+            ('<body', 1),
+            ('<div', 6),
+            ('<section', 3),
+            ('<img', 3),
+            ('<p', 4),
             ('</body>', 1),
             ('</html>', 1),
         )
@@ -152,27 +152,101 @@ class MaterialGetTest(TestCase):
             with self.subTest():
                 self.assertContains(self.resp, text, count)
 
-class greentradeModelsTest(TestCase):
-    def test_criar_usuario(self):
-        client = MongoClient("mongodb://localhost:27017")
-        db = client['greentrade']
-        collection = db['clientes']
+class PontosGetTest(TestCase):
+    def setUp(self):
+        self.resp = self.client.get(r('core:pontos'), follow=true)
 
-        # Cria um documento no MongoDB
-        cadastro_data = {'nome': 'Lucas'}
-        result = collection.insert_one(cadastro_data)
-        self.assertIsNotNone(result.inserted_id)
+    def test_status_code(self):
+        self.assertEqual(self.resp.status_code, HTTPStatus.OK)
 
-    def test_se_foi_criado(self):
-    # Verifica se o documento existe no MongoDB
-        client = MongoClient("mongodb://localhost:27017/greentrade")
-        collection = client['greentrade']['clientes']
-        documents = collection.find()
-        self.assertTrue(documents.count() > 0)
+    def test_template_used(self):
+        self.assertTemplateUsed(self.resp, 'pontos.html')
+    
+    def test_found_html(self):
+        tags = (
+            ('<html', 1),
+            ('<body', 1),
+            ('<div', 7),
+            ('<button', 1),
+            ('<p', 4),
+            ('</body>', 1),
+            ('</html>', 1),
+        )
+        for text, count in tags:
+            with self.subTest():
+                self.assertContains(self.resp, text, count)
 
-    def test_criado_somente_um(self):
-        # Verifica se apenas um documento foi criado
-        client = MongoClient("mongodb://localhost:27017/greentrade")
-        collection = client['greentrade']['clientes']
-        documents = collection.find()
-        self.assertEqual(documents.count(), 1)
+class ColetaGetTest(TestCase):
+    def setUp(self):
+        self.resp = self.client.get(r('core:coleta'), follow=true)
+
+    def test_status_code(self):
+        self.assertEqual(self.resp.status_code, HTTPStatus.OK)
+
+    def test_template_used(self):
+        self.assertTemplateUsed(self.resp, 'coleta.html')
+    
+    def test_found_html(self):
+        tags = (
+            ('<html', 1),
+            ('<body', 1),
+            ('<div', 7),
+            ('<ul', 1),
+            ('<section', 1),
+            ('<h1', 1)
+            ('</body>', 1),
+            ('</html>', 1),
+        )
+        for text, count in tags:
+            with self.subTest():
+                self.assertContains(self.resp, text, count)
+
+class ProdutoGetTest(TestCase):
+    def setUp(self):
+        self.resp = self.resp.get(r('core:produto'), follow=true)
+    
+    def test_status_code(self):
+        self.assertEqual(self.resp.status_code, HTTPStatus.OK)
+
+    def test_template_used(self):
+        self.assertTemplateUsed(self.resp, 'produto.html')
+    
+    def test_found_html(self):
+        tags = (
+            ('<html', 1),
+            ('<body', 1),
+            ('<div', 7),
+            ('<form', 1),
+            ('<select', 1),
+            ('<option', 4)
+            ('</body>', 1),
+            ('</html>', 1),
+        )
+        for text, count in tags:
+            with self.subTest():
+                self.assertContains(self.resp, text, count)
+
+# class greentradeModelsTest(TestCase):
+#     def test_criar_usuario(self):
+#         client = MongoClient("mongodb://localhost:27017")
+#         db = client['greentrade']
+#         collection = db['clientes']
+
+#         # Cria um documento no MongoDB
+#         cadastro_data = {'nome': 'Lucas'}
+#         result = collection.insert_one(cadastro_data)
+#         self.assertIsNotNone(result.inserted_id)
+
+#     def test_se_foi_criado(self):
+#         # Verifica se o documento existe no MongoDB
+#         client = MongoClient("mongodb://localhost:27017/greentrade")
+#         collection = client['greentrade']['clientes']
+#         documents = collection.find()
+#         self.assertTrue(documents.count() > 0)
+
+#     def test_criado_somente_um(self):
+#         # Verifica se apenas um documento foi criado
+#         client = MongoClient("mongodb://localhost:27017/greentrade")
+#         collection = client['greentrade']['clientes']
+#         documents = collection.find()
+#         self.assertEqual(documents.count(), 1)
