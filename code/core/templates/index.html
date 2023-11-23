@@ -3,90 +3,99 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>GreenTrade</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <title>GreenTrade</title>
 </head>
 
 <body class="fundo font">
-    {% if messages %}
-    <div class="alert alert-danger" role="alert">
-        <ul class="mb-0">
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    {% endif %}
+  {% if messages %}
+  <div class="alert alert-danger" role="alert">
+    <ul class="mb-0">
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
 
-    <!-- Navbar -->
-    <header>
-      <nav class="shadown-md w-full fixed top-0 left-0">
-        <div class="md:flex items-center justify-between py-4 md:px-25 px-7 bg-gradient-to-r from-[#004B23] to-green-700">
-          <a class="font-medium text-2xl cursor-pointer text-[#F0F0F0]" href="{% url 'core:index' %}">Green<span
-              class="text-[#DBCB3A]">Trade</span></a>
-          <div class="flex flex-col md:flex-row py-4 md:space-x-10">
-            <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
-              href="{% url 'core:ticket' %}">Ticket</a>
-            <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
-              href="{% url 'core:coleta' %}">Pontos de
-              coleta</a>
-            <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
-              href="{% url 'core:material' %}">
-              Materiais recicláveis
-            </a>
-            <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
-              href="{% url 'core:pontos' %}">Meus pontos</a>
-          </div>
-          <div class="w-20 bg-[#DBCB3A] text-white rounded-lg p-1 text-center hover:scale-105 transition-all">
-            <a class="font-bold" href="{% url 'core:login' %}">Login</a>
-          </div>
+  <!-- Navbar -->
+  <header>
+    <nav class="shadown-md w-full fixed top-0 left-0 z-10">
+      <div class="md:flex items-center justify-between py-4 md:px-25 px-7 bg-gradient-to-r from-[#004B23] to-green-700">
+        <a class="font-medium text-2xl cursor-pointer text-[#F0F0F0]" href="{% url 'core:index' %}">Green<span
+            class="text-[#DBCB3A]">Trade</span></a>
+        <div class="flex flex-col md:flex-row py-4 md:space-x-10">
+          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
+            href="{% url 'core:ticket' %}">Ticket</a>
+          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
+            href="{% url 'core:coleta' %}">Pontos de
+            coleta</a>
+          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
+            href="{% url 'core:material' %}">
+            Materiais recicláveis
+          </a>
+          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
+            href="{% url 'core:pontos' %}">Meus pontos</a>
         </div>
-      </nav>
-    </header>
-
-    <!-- Corpo do site -->
-    <div class="block h-screen md:mt-40 mt-52">
-        <h1 class="font-bold text-3xl text-center">Sobre o projeto</h1>
-        <div class="md:flex justify-center p-6 md:p-0 mt-6 md:space-x-16 space-y-4">
-            <section class="md:max-w-sm">
-                <p class="font-medium">
-                    O GreenTrade, uma iniciativa inovadora em prol da sustentabilidade, foi concebido com o
-                    objetivo de transformar a reciclagem em uma experiência colaborativa e recompensadora. Esta
-                    plataforma busca endereçar os desafios ambientais contemporâneos, estabelecendo uma ponte entre
-                    empresas e
-                    consumidores para promover o consumo e produção responsáveis, alinhados com os Objetivos de
-                    Desenvolvimento
-                    Sustentável (ODS), especialmente o ODS 12 - Consumo e Produção Responsáveis.</p>
-            </section>
-            <section class="w-60 md:w-full md:max-w-sm">
-                <img src="{% static 'img/lixeira.png' %}" alt="lixeira">
-            </section>
+        <div class="w-20 bg-[#DBCB3A] text-white rounded-lg p-1 text-center hover:scale-105 transition-all">
+          <a class="font-bold" href="{% url 'core:login' %}">Login</a>
         </div>
-    </div>
+      </div>
+    </nav>
+  </header>
 
-    <!-- footer -->
-    <footer
-        class="w-full md:flex md:flex-row justify-around text-center bg-[#004B23] text-[#F0F0F0] left-0 space-y-4 md:space-y-0">
-        <dl>
-            <dt class="font-bold">Telefone</dt>
-            <dd><a class="hover:text-blue-200" href="tel:+55 (19) 99999-9999">(19) 99999-9999</a></dd>
-        </dl>
-        <dl>
-            <dt class="font-bold">E-mail</dt>
-            <dd><a class="hover:text-blue-200" href="mailto:contato@greentrade.com">contato@greentrade.com</a></dd>
-        </dl>
-        <dl>
-            <dt class="font-bold">Github</dt>
-            <dd><a class="hover:text-blue-200" href="https://github.com/wkauan/GreenTrade.git">GreenTrade</a></dd>
-        </dl>
-    </footer>
-    <hr />
-    <div class="w-full text-center text-sm py-2 text-[#F0F0F0] bg-[#004B23]">
-        <p>©GreenTrade. Todos os direitos reservados.</p>
+
+  <div class="relative w-full mt-40 md:mt-20">
+    <img class="object-cover w-full h-96" src="{% static 'img/reciclagem.jpg' %}" alt="reciclagem">
+    <h2 class="absolute text-[#F0F0F0] font-bold text-3xl top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hover:text-green-500 hover:scale-105 transition-all">
+      Recicle para um futuro mais verde!</h2>
+  </div>
+
+  <!-- Corpo do site -->
+  <div class="block h-screen md:mt-40 mt-52">
+    <h1 class="font-bold text-3xl text-center">Sobre o projeto</h1>
+    <div class="md:flex justify-center p-6 md:p-0 mt-6 md:space-x-16 space-y-4">
+      <section class="md:max-w-lg">
+        <p class="font-medium mb-5">
+          O GreenTrade, uma iniciativa inovadora em prol da sustentabilidade, foi concebido com o
+          objetivo de transformar a reciclagem em uma experiência colaborativa e recompensadora. Esta
+          plataforma busca endereçar os desafios ambientais contemporâneos, estabelecendo uma ponte entre
+          empresas e
+          consumidores para promover o consumo e produção responsáveis, alinhados com os Objetivos de
+          Desenvolvimento
+          Sustentável (ODS), especialmente o ODS 12 - Consumo e Produção Responsáveis.</p>
+          <a class="font-bold text-[#004B23] hover:underline hover:text-[#228B22] transition-all duration-200 delay-100"
+          href="{% url 'core:material' %}">Saiba quais materiais reciclar</a>
+      </section>
+      <section class="w-60 md:w-full md:max-w-sm">
+        <img class="rounded-lg" src="{% static 'img/reciclagem2.jpg' %}" alt="reciclando">
+      </section>
     </div>
+  </div>
+
+  <!-- footer -->
+  <footer
+    class="w-full md:flex md:flex-row justify-around text-center bg-[#004B23] text-[#F0F0F0] left-0 space-y-4 md:space-y-0">
+    <dl>
+      <dt class="font-bold">Telefone</dt>
+      <dd><a class="hover:text-blue-200" href="tel:+55 (19) 99999-9999">(19) 99999-9999</a></dd>
+    </dl>
+    <dl>
+      <dt class="font-bold">E-mail</dt>
+      <dd><a class="hover:text-blue-200" href="mailto:contato@greentrade.com">contato@greentrade.com</a></dd>
+    </dl>
+    <dl>
+      <dt class="font-bold">Github</dt>
+      <dd><a class="hover:text-blue-200" href="https://github.com/wkauan/GreenTrade.git">GreenTrade</a></dd>
+    </dl>
+  </footer>
+  <hr />
+  <div class="w-full text-center text-sm py-2 text-[#F0F0F0] bg-[#004B23]">
+    <p>©GreenTrade. Todos os direitos reservados.</p>
+  </div>
 </body>
 
 <script src="https://cdn.tailwindcss.com"></script>
