@@ -74,12 +74,17 @@ def login(request):
 
 def pontos(request):
     return render(request, 'pontos.html')
+    
+
+    
 
 def produto(request):
     return render(request, 'produto.html')
 
 def coleta(request):
-    return render(request, 'coleta.html')
+    empresas = EmpresaModel.objects.all()
+    return render(request, 'coleta.html', {'empresas': empresas})
+    
 
 def ticket(request):
     return render(request, 'ticket.html')
