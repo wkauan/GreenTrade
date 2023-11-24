@@ -42,10 +42,10 @@ python manage.py runserver
 - [Lucas Theodoro](https://github.com/LucasTheodoroSilva)
 - [Marcel Araujo](https://github.com/araujomarcel)
 
-### Funções
-
-- Scrum Master: Beatriz Honorato
-- Documentação: Larissa Volsi
-- Desenvolvedor Back-End: Marcel Araujo
-- Desenvolvedor Front-End: Kauan Bomfim
-- Banco de dados: Larissa Volsi e Lucas Theodoro
+| Função | Responsável |
+| ------ | ------ |
+| **Scrum Master** | Beatriz Honorato |
+| **Documentação** | Larissa Volsi |
+| **Desenvolvedor Back-End** | Marcel Araujo |
+| **Desenvolvedor Front-End** | Kauan Bomfim |
+| **Banco de dados** | Larissa Volsi e Lucas Theodoro |
