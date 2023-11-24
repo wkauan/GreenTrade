@@ -30,7 +30,19 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
 # Application definition
+
+
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.SHA1PasswordHasher',
+]
+
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -41,6 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
 ]
+
+AUTHENTICATION_BACKENDS = ['core.backends.CustomBackend']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

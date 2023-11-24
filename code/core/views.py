@@ -4,7 +4,8 @@ from .models import ClienteModel,EmpresaModel, LoginModel
 from .forms import ClienteForm,EmpresaForm, LoginForm
 from . import views
 from django.contrib.auth.hashers import check_password
-from .utils import validar
+from .backends import CustomBackend
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 
@@ -25,7 +26,7 @@ def cadastro(request):
             cliente.telefone = form.data['telefone']
             cliente.endereco = form.data['endereco']
             cliente.email = form.data['email']
-            cliente.senha = form.data['senha']
+            cliente.password = form.data['senha']
             cliente.save()
                       
     return render(request, 'cadastro.html')
@@ -52,31 +53,43 @@ def empresa(request):
 
 
 def login(request):
-    
     if request.method == 'POST':
-        cpf = request.POST.get('cpf')
-        senha = request.POST.get('senha')
+        username = request.POST.get('cpf_cnpj')
+        password = request.POST.get('password')
+        User = None
+        print(f"Username: {username}")
+        print(f"Senha: {password}")
+        
 
-        resultado_validacao = validar(cpf, senha)
 
-        if resultado_validacao[0]:  # Verifica se a validação foi bem-sucedida
-            validado, usuario = resultado_validacao
-            return render(request, 'index.html', {'usuario': usuario})
-    # Restante do seu código
+        if username is not None:
+            if len(username) == 11:
+                user = authenticate(request, cpf=username, password = password, user_type = 'cliente')
+                
+            elif len(username) ==14:
+                user = authenticate(request, cnpj=username, password = password, user_type = 'empresa')
+            
+            if user is not None:
+                login(request, user)
+                print(f"Usuário autenticado: {user.username} ({user.user_type})")
+                if user.user_type == 'cliente':
+                    return redirect('index.html')
+                elif user.user_type == 'empresa':
+                    return redirect('index.html')
+            else:
+                print("Autenticação falhou.")
+                return render(request, 'login.html', {'error':'Credenciais Inválidas'})
         else:
-            return render(request, 'login.html', {'erro': 'Credenciais inválidas'})
-    # Trate o caso em que a validação não foi bem-sucedida
-            return render(request, 'index.html', {'erro': 'Credenciais inválidas'})
-
-
-
+            return render(request, 'login.html', {'error':'Campo CPF/CNPJ não informado'})
+            
     return render(request, 'login.html')
+
+
+
 
 def pontos(request):
     return render(request, 'pontos.html')
-    
 
-    
 
 def produto(request):
     return render(request, 'produto.html')
@@ -91,3 +104,4 @@ def ticket(request):
 
 def material(request):
     return render(request, 'material.html')
+

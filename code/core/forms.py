@@ -6,7 +6,7 @@ from . import views  # Importe todo o módulo
 class ClienteForm(forms.ModelForm):
     class Meta:
         model = ClienteModel
-        fields = ['nome','cpf','telefone','endereco','email','senha']
+        fields = ['nome','cpf','telefone','endereco','email','password']
 
 class EmpresaForm(forms.ModelForm):
     class Meta:
