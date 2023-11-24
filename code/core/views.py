@@ -54,19 +54,20 @@ def empresa(request):
 def login(request):
     
     if request.method == 'POST':
-        email = request.POST.get('email')
+        cpf = request.POST.get('cpf')
         senha = request.POST.get('senha')
 
-        validado, usuario = validar(email, senha)
+        resultado_validacao = validar(cpf, senha)
 
-        if validado:
-            # Usuário validado
+        if resultado_validacao[0]:  # Verifica se a validação foi bem-sucedida
+            validado, usuario = resultado_validacao
             return render(request, 'index.html', {'usuario': usuario})
+    # Restante do seu código
         else:
-            # Usuário não validado
             return render(request, 'login.html', {'erro': 'Credenciais inválidas'})
-    else:
-        return render(request, 'login.html')
+    # Trate o caso em que a validação não foi bem-sucedida
+            return render(request, 'index.html', {'erro': 'Credenciais inválidas'})
+
 
 
     return render(request, 'login.html')

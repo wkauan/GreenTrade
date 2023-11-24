@@ -17,5 +17,5 @@ class EmpresaModel(models.Model):
     senha = models.CharField('senha', max_length=15)
     
 class LoginModel(models.Model):
-    email = models.CharField('email', max_length=30)
+    cpf = models.CharField('cpf', max_length=11)
     senha = models.CharField('senha', max_length=15)

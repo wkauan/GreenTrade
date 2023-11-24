@@ -9,11 +9,11 @@ class ClienteForm(forms.ModelForm):
         fields = ['nome','cpf','telefone','endereco','email','senha']
 
 class EmpresaForm(forms.ModelForm):
-    class meta:
+    class Meta:
         model = EmpresaModel
         fields = ['nome','cnpj','telefone','endereco','email','senha']
 
 class LoginForm(forms.ModelForm):
     class meta:
         model = LoginModel
-        fields=['email','senha']
+        fields=['cpf','senha']
