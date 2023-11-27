@@ -234,6 +234,31 @@ class ProdutoGetTest(TestCase):
         for text, count in tags:
             with self.subTest():
                 self.assertContains(self.resp, text, count)
+        
+# Teste da página Trocas
+class TrocasGetTest(TestCase):
+    def setUp(self):
+        self.resp = self.client.get(r('core:trocas'), follow=True)
+
+    def test_status_code(self):
+        self.assertEqual(self.resp.status_code, HTTPStatus.OK)
+
+    def test_template_used(self):
+        self.assertTemplateUsed(self.resp, 'trocas.html')
+    
+    def test_found_html(self):
+        tags = (
+            ('<html', 1),
+            ('<body', 1),
+            ('<div', 5),
+            ('<ul', 1),
+            ('<section', 1),
+            ('</body>', 1),
+            ('</html>', 1),
+        )
+        for text, count in tags:
+            with self.subTest():
+                self.assertContains(self.resp, text, count)
 
 # class greentradeModelsTest(TestCase):
 #     def test_criar_usuario(self):
