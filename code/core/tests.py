@@ -3,6 +3,7 @@ from django.shortcuts import resolve_url as r
 from http import HTTPStatus
 # from pymongo import MongoClient
 
+# Teste da página Index
 class IndexGetTest(TestCase):
     def setUp(self):
         self.resp = self.client.get(r('core:index'), follow=True)
@@ -27,6 +28,7 @@ class IndexGetTest(TestCase):
             with self.subTest():
                 self.assertContains(self.resp, text, count)
 
+# Teste da página Cadastro
 class CadastroGetTest(TestCase):
     def setUp(self):
         self.resp = self.client.get(r('core:cadastro'), follow=True)
@@ -52,6 +54,7 @@ class CadastroGetTest(TestCase):
             with self.subTest():
                 self.assertContains(self.resp, text, count)
 
+# Teste da página Cadastro de Empresa
 class EmpresaGetTest(TestCase):
     def setUp(self):
         self.resp = self.client.get(r('core:empresa'), follow=True)
@@ -77,6 +80,7 @@ class EmpresaGetTest(TestCase):
             with self.subTest():
                 self.assertContains(self.resp, text, count)
 
+# Teste da página Login
 class LoginGetTest(TestCase):
     def setUp(self):
         self.resp = self.client.get(r('core:login'), follow=True)
@@ -102,6 +106,7 @@ class LoginGetTest(TestCase):
             with self.subTest():
                 self.assertContains(self.resp, text, count)
 
+# Teste da página Ticket
 class TicketGetTest(TestCase):
     def setUp(self):
         self.resp = self.client.get(r('core:ticket'), follow=True)
@@ -127,6 +132,7 @@ class TicketGetTest(TestCase):
             with self.subTest():
                 self.assertContains(self.resp, text, count)
 
+# Teste da página Material
 class MaterialGetTest(TestCase):
     def setUp(self):
         self.resp = self.client.get(r('core:material'), follow=True)
@@ -152,6 +158,7 @@ class MaterialGetTest(TestCase):
             with self.subTest():
                 self.assertContains(self.resp, text, count)
 
+# Teste da página Pontos
 class PontosGetTest(TestCase):
     def setUp(self):
         self.resp = self.client.get(r('core:pontos'), follow=True)
@@ -176,6 +183,7 @@ class PontosGetTest(TestCase):
             with self.subTest():
                 self.assertContains(self.resp, text, count)
 
+# Teste da página Coleta
 class ColetaGetTest(TestCase):
     def setUp(self):
         self.resp = self.client.get(r('core:coleta'), follow=True)
@@ -201,6 +209,7 @@ class ColetaGetTest(TestCase):
             with self.subTest():
                 self.assertContains(self.resp, text, count)
 
+# Teste da página Produto
 class ProdutoGetTest(TestCase):
     def setUp(self):
         self.resp = self.client.get(r('core:produto'), follow=True)
