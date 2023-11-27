@@ -17,9 +17,9 @@ class IndexGetTest(TestCase):
         tags = (
             ('<html', 1),
             ('<body', 1),
-            ('<div', 6),
+            ('<div', 7),
             ('<section', 2),
-            ('<img', 1),
+            ('<img', 2),
             ('</body>', 1),
             ('</html>', 1),
         )
@@ -154,7 +154,7 @@ class MaterialGetTest(TestCase):
 
 class PontosGetTest(TestCase):
     def setUp(self):
-        self.resp = self.client.get(r('core:pontos'), follow=true)
+        self.resp = self.client.get(r('core:pontos'), follow=True)
 
     def test_status_code(self):
         self.assertEqual(self.resp.status_code, HTTPStatus.OK)
@@ -166,7 +166,7 @@ class PontosGetTest(TestCase):
         tags = (
             ('<html', 1),
             ('<body', 1),
-            ('<div', 7),
+            ('<div', 9),
             ('<button', 1),
             ('<p', 4),
             ('</body>', 1),
@@ -178,7 +178,7 @@ class PontosGetTest(TestCase):
 
 class ColetaGetTest(TestCase):
     def setUp(self):
-        self.resp = self.client.get(r('core:coleta'), follow=true)
+        self.resp = self.client.get(r('core:coleta'), follow=True)
 
     def test_status_code(self):
         self.assertEqual(self.resp.status_code, HTTPStatus.OK)
@@ -190,10 +190,10 @@ class ColetaGetTest(TestCase):
         tags = (
             ('<html', 1),
             ('<body', 1),
-            ('<div', 7),
+            ('<div', 5),
             ('<ul', 1),
             ('<section', 1),
-            ('<h1', 1)
+            ('<h1', 1),
             ('</body>', 1),
             ('</html>', 1),
         )
@@ -203,7 +203,7 @@ class ColetaGetTest(TestCase):
 
 class ProdutoGetTest(TestCase):
     def setUp(self):
-        self.resp = self.resp.get(r('core:produto'), follow=true)
+        self.resp = self.client.get(r('core:produto'), follow=True)
     
     def test_status_code(self):
         self.assertEqual(self.resp.status_code, HTTPStatus.OK)
@@ -215,10 +215,10 @@ class ProdutoGetTest(TestCase):
         tags = (
             ('<html', 1),
             ('<body', 1),
-            ('<div', 7),
+            ('<div', 11),
             ('<form', 1),
             ('<select', 1),
-            ('<option', 4)
+            ('<option', 4),
             ('</body>', 1),
             ('</html>', 1),
         )
