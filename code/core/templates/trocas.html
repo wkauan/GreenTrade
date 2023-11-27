@@ -3,14 +3,15 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>GreenTrade</title>
+    <title>Login | GreenTrade</title>
 </head>
 
-<body class="fundo font">
+<body class="fundo">
     {% if messages %}
     <div class="alert alert-danger" role="alert">
         <ul class="mb-0">
@@ -23,7 +24,7 @@
 
     <!-- Navbar -->
     <header>
-        <nav class="shadown-md w-full fixed top-0 left-0 z-10">
+        <nav class="shadown-md w-full fixed top-0 left-0">
             <div
                 class="md:flex items-center justify-between py-4 md:px-25 px-7 bg-gradient-to-r from-[#004B23] to-green-700">
                 <a class="font-medium text-2xl cursor-pointer text-[#F0F0F0]" href="{% url 'core:index' %}">Green<span
@@ -44,7 +45,7 @@
                         href="{% url 'core:trocas' %}">Trocas</a>
                 </div>
                 <div class="w-20 bg-[#DBCB3A] text-white rounded-lg p-1 text-center hover:scale-105 transition-all">
-                    <a class="font-bold" href="{% url 'core:login' %}">Login</a>
+                    <a class="font-bold" href="{% url 'core:cadastro' %}">Cadastrar</a>
                 </div>
             </div>
         </nav>
@@ -52,41 +53,23 @@
 
     <!-- Corpo do site -->
     <div class="block h-screen md:mt-40 mt-72">
-        <h1 class="font-bold text-3xl text-center">Materiais recicláveis</h1>
-        <div class="flex flex-row justify-around p-10 space-x-10">
-            <section class="w-[33%]">
-                <img class="rounded-lg w-[100%] h-80 object-fill hover:scale-105 transition-all"
-                    src="{% static 'img/Metais_ferrosos.jpg' %}" alt="Metais ferrosos">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad dicta aliquam, dignissimos sunt maxime
-                    iste quisquam. Fuga, illum laborum, optio architecto accusantium vero fugiat amet earum delectus
-                    beatae distinctio laudantium.</p>
-                <a class="font-bold text-[#004B23] hover:underline hover:text-[#228B22] transition-all duration-200 delay-100"
-                    href="{% url 'core:produto' %}">Deseja reciclar esse material?</a>
-            </section>
-            <section class="w-[33%]">
-                <img class="rounded-lg w-[100%] h-80 object-cover hover:scale-105 transition-all"
-                    src="{% static 'img/Materiais_Eletronicos.jpg' %}" alt="Materiais Eletronicos">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad dicta aliquam, dignissimos sunt maxime
-                    iste quisquam. Fuga, illum laborum, optio architecto accusantium vero fugiat amet earum delectus
-                    beatae distinctio laudantium.</p>
-                <a class="font-bold text-[#004B23] hover:underline hover:text-[#228B22] transition-all duration-200 delay-100"
-                    href="{% url 'core:produto' %}">Deseja reciclar esse material?</a>
-            </section>
-            <section class="w-[33%]">
-                <img class="rounded-lg w-[100%] h-80 object-cover hover:scale-105 transition-all"
-                    src="{% static 'img/Plastico.jpg' %}" alt="Plastico">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad dicta aliquam, dignissimos sunt maxime
-                    iste quisquam. Fuga, illum laborum, optio architecto accusantium vero fugiat amet earum delectus
-                    beatae distinctio laudantium.</p>
-                <a class="font-bold text-[#004B23] hover:underline hover:text-[#228B22] transition-all duration-200 delay-100"
-                    href="{% url 'core:produto' %}">Deseja reciclar esse material?</a>
-            </section>
-        </div>
+        <h1 class="font-bold text-3xl text-center">Os produtos disponívels são</h1>
+        <section class="p-8">
+            <ul class="list-disc pl-4 space-y-8">
+                {% for empresa in empresas %}
+                <li><img src="">
+                    Macarrão - 10,00 pontos - Supermercado Delta
+                    <button id="botao" type="submit"
+                        class="w-40 py-2 mt-5 mb-5 rounded-md bg-[#DBCB3A] font-bold text-lg hover:scale-105 transition-all">Comprar</button>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
     </div>
 
     <!-- footer -->
     <footer
-        class="w-full mt-40 md:flex md:flex-row justify-around text-center bg-[#004B23] text-[#F0F0F0] left-0 space-y-4 md:space-y-0">
+        class="w-full md:flex md:flex-row justify-around text-center bg-[#004B23] text-[#F0F0F0] left-0 space-y-4 md:space-y-0">
         <dl>
             <dt class="font-bold">Telefone</dt>
             <dd><a class="hover:text-blue-200" href="tel:+55 (19) 99999-9999">(19) 99999-9999</a></dd>

@@ -105,3 +105,6 @@ def ticket(request):
 def material(request):
     return render(request, 'material.html')
 
+def trocas(request):
+    return render(request, 'trocas.html')
+

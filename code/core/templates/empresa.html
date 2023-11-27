@@ -40,6 +40,8 @@
           </a>
           <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
             href="{% url 'core:pontos' %}">Meus pontos</a>
+          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
+            href="{% url 'core:trocas' %}">Trocas</a>
         </div>
         <div class="w-20 bg-[#DBCB3A] text-white rounded-lg p-1 text-center hover:scale-105 transition-all">
           <a class="font-bold" href="{% url 'core:login' %}">Login</a>
@@ -48,12 +50,12 @@
     </nav>
   </header>
 
-  <div name="form" class="block h-screen md:mt-40 mt-64">
+  <div name="form" class="block h-screen md:mt-40 mt-72">
     <div class="flex justify-center">
 
       <!-- formulario -->
-      <form class="bg-gradient-to-r from-[#004B23] to-green-700 rounded-lg text-[#F0F0F0] w-80 h-auto" action="{% url 'core:empresa' %}" method="post"
-        id="EmpresaForm"> {% csrf_token %}
+      <form class="bg-gradient-to-r from-[#004B23] to-green-700 rounded-lg text-[#F0F0F0] w-80 h-auto"
+        action="{% url 'core:empresa' %}" method="post" id="EmpresaForm"> {% csrf_token %}
         <h1 class="text-center mb-5 mt-3 font-medium">Cadastro de Empresa</h1>
         <fieldset>
 
@@ -69,14 +71,14 @@
               class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="cnpj" required>
           </div>
 
-           <!-- campo telefone -->
-           <div class="mb-5 flex justify-center">
+          <!-- campo telefone -->
+          <div class="mb-5 flex justify-center">
             <input type="text" minlength="10" maxlength="11" name="telefone" id="telefone"
               class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Telefone" required>
           </div>
 
-           <!-- campo Endereço -->
-           <div class="mb-5 flex justify-center">
+          <!-- campo Endereço -->
+          <div class="mb-5 flex justify-center">
             <input type="text" minlength="5" maxlength="30" name="endereco" id="endereco"
               class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Endereço" required>
           </div>
@@ -92,7 +94,7 @@
             <input type="text" minlength="10" maxlength="50" name="senha" id="senha"
               class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Senha" required>
           </div>
-          
+
           <!-- botão de acesso -->
           <div class="mb-3 text-center">
             <button id="botao" type="submit"

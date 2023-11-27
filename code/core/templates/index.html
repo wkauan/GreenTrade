@@ -39,6 +39,8 @@
           </a>
           <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
             href="{% url 'core:pontos' %}">Meus pontos</a>
+          <a class="text-[#F0F0F0] hover:text-[#DBCB3A] hover:font-bold transition-all duration-200 delay-100"
+            href="{% url 'core:trocas' %}">Trocas</a>
         </div>
         <div class="w-20 bg-[#DBCB3A] text-white rounded-lg p-1 text-center hover:scale-105 transition-all">
           <a class="font-bold" href="{% url 'core:login' %}">Login</a>
@@ -48,9 +50,10 @@
   </header>
 
 
-  <div class="relative w-full mt-40 md:mt-20">
+  <div class="relative w-full mt-48 md:mt-20">
     <img class="object-cover w-full h-96" src="{% static 'img/reciclagem.jpg' %}" alt="reciclagem">
-    <h2 class="absolute text-[#F0F0F0] font-bold text-3xl top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hover:text-green-500 hover:scale-105 transition-all">
+    <h2
+      class="absolute text-[#F0F0F0] font-bold text-3xl top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hover:text-green-500 hover:scale-105 transition-all">
       Recicle para um futuro mais verde!</h2>
   </div>
 
@@ -67,7 +70,7 @@
           consumidores para promover o consumo e produção responsáveis, alinhados com os Objetivos de
           Desenvolvimento
           Sustentável (ODS), especialmente o ODS 12 - Consumo e Produção Responsáveis.</p>
-          <a class="font-bold text-[#004B23] hover:underline hover:text-[#228B22] transition-all duration-200 delay-100"
+        <a class="font-bold text-[#004B23] hover:underline hover:text-[#228B22] transition-all duration-200 delay-100"
           href="{% url 'core:material' %}">Saiba quais materiais reciclar</a>
       </section>
       <section class="w-60 md:w-full md:max-w-sm">
