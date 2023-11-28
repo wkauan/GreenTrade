@@ -3,9 +3,7 @@ from django.contrib import messages
 from .models import ClienteModel,EmpresaModel, LoginModel
 from .forms import ClienteForm,EmpresaForm, LoginForm
 from . import views
-from django.contrib.auth.hashers import check_password
-from .backends import CustomBackend
-from django.contrib.auth import authenticate, login
+
 
 # Create your views here.
 
