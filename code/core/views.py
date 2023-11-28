@@ -4,8 +4,9 @@ from .models import ClienteModel,EmpresaModel, LoginModel
 from .forms import ClienteForm,EmpresaForm, LoginForm
 from . import views
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login as login_django
 
 
 # Create your views here.
@@ -70,7 +71,7 @@ def login(request):
 
         user = authenticate(username = username , password = password)
         if user:
-            login(request, user)
+            login_django(request, user)
             return render(request, 'index.html')
         else:
             return render(request, 'login.html')
@@ -97,7 +98,7 @@ def produto(request):
     return render(request, 'index.html')
 
 
-    
+
 
 def coleta(request):
     empresas = EmpresaModel.objects.all()
