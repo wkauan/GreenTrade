@@ -3,6 +3,9 @@ from django.contrib import messages
 from .models import ClienteModel,EmpresaModel, LoginModel
 from .forms import ClienteForm,EmpresaForm, LoginForm
 from . import views
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from django.contrib.auth.forms import AuthenticationForm
 
 
 # Create your views here.
@@ -24,8 +27,13 @@ def cadastro(request):
             cliente.telefone = form.data['telefone']
             cliente.endereco = form.data['endereco']
             cliente.email = form.data['email']
-            cliente.password = form.data['senha']
+            cliente.password = form.data['password']
             cliente.save()
+
+            cliente = User.objects.create_user(username = form.data['cpf'], password = form.data ['password'])
+            cliente.save()
+            
+
                       
     return render(request, 'cadastro.html')
 
@@ -44,43 +52,35 @@ def empresa(request):
             empresa.telefone = form.data['telefone']
             empresa.endereco = form.data['endereco']
             empresa.email = form.data['email']
-            empresa.senha = form.data['senha']
+            empresa.password = form.data['password']
+            empresa.save()
+
+            empresa = User.objects.create_user(username = form.data['cnpj'], password = form.data ['password'])
             empresa.save()
             
     return render(request, 'empresa.html')
 
 
 def login(request):
-    if request.method == 'POST':
-        username = request.POST.get('cpf_cnpj')
+     if request.method == 'GET':
+        return render(request, 'login.html') 
+     else:
+        username = request.POST.get('cpf')
         password = request.POST.get('password')
-        User = None
-        print(f"Username: {username}")
-        print(f"Senha: {password}")
-        
 
-
-        if username is not None:
-            if len(username) == 11:
-                user = authenticate(request, cpf=username, password = password, user_type = 'cliente')
-                
-            elif len(username) ==14:
-                user = authenticate(request, cnpj=username, password = password, user_type = 'empresa')
-            
-            if user is not None:
-                login(request, user)
-                print(f"Usuário autenticado: {user.username} ({user.user_type})")
-                if user.user_type == 'cliente':
-                    return redirect('index.html')
-                elif user.user_type == 'empresa':
-                    return redirect('index.html')
-            else:
-                print("Autenticação falhou.")
-                return render(request, 'login.html', {'error':'Credenciais Inválidas'})
+        user = authenticate(username = username , password = password)
+        if user:
+            return render(request, 'index.html')
         else:
-            return render(request, 'login.html', {'error':'Campo CPF/CNPJ não informado'})
+            return render(request, 'login.html')
+    
+     return render(request, 'login.html')  
+
             
-    return render(request, 'login.html')
+
+    
+            
+    
 
 
 

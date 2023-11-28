@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'core',
 ]
 
-AUTHENTICATION_BACKENDS = ['core.backends.CustomBackend']
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

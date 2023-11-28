@@ -17,8 +17,8 @@ class EmpresaModel(models.Model):
     telefone = models.CharField('telefone', max_length=11)
     endereco = models.CharField('endereco', max_length=50)
     email = models.CharField('email', max_length=30)
-    senha = models.CharField('senha', max_length=15)
+    password = models.CharField('senha', max_length=15)
     
 class LoginModel(models.Model):
     cpf = models.CharField('cpf', max_length=11)
-    senha = models.CharField('senha', max_length=15)
+    password = models.CharField('password', max_length=15)
