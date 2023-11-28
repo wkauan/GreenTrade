@@ -4,7 +4,7 @@ from .models import ClienteModel,EmpresaModel, LoginModel
 from .forms import ClienteForm,EmpresaForm, LoginForm
 from . import views
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 
 
@@ -70,6 +70,7 @@ def login(request):
 
         user = authenticate(username = username , password = password)
         if user:
+            login(request, user)
             return render(request, 'index.html')
         else:
             return render(request, 'login.html')
@@ -86,11 +87,17 @@ def login(request):
 
 
 def pontos(request):
-    return render(request, 'pontos.html')
-
+    if request.user.is_authenticated:
+        return render(request, 'pontos.html')
+    return render(request, 'index.html')
 
 def produto(request):
-    return render(request, 'produto.html')
+    if request.user.is_authenticated:
+        return render(request, 'produto.html')
+    return render(request, 'index.html')
+
+
+    
 
 def coleta(request):
     empresas = EmpresaModel.objects.all()
