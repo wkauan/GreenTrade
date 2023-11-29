@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import ClienteModel,EmpresaModel, LoginModel
-from .forms import ClienteForm,EmpresaForm, LoginForm
+from .models import ClienteModel,EmpresaModel, LoginModel , ProdutoModel
+from .forms import ClienteForm,EmpresaForm, LoginForm , ProdutoForm
 from . import views
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as login_django
-
+from django.contrib.auth.decorators import login_required
+from .mongo_models import MongoClienteModel
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -78,24 +80,48 @@ def login(request):
     
      return render(request, 'login.html')  
 
-            
 
-    
-            
-    
-
-
-
-
+@login_required(login_url="/login")
 def pontos(request):
-    if request.user.is_authenticated:
-        return render(request, 'pontos.html')
     return render(request, 'index.html')
 
+
+@login_required(login_url="/login")
 def produto(request):
-    if request.user.is_authenticated:
-        return render(request, 'produto.html')
-    return render(request, 'index.html')
+    cpf_usuario = request.user.username
+    ccliente = ClienteModel.objects.get(cpf=cpf_usuario)
+    
+    if request.method == 'POST':
+        form = ProdutoForm(request.POST)
+        tipo_material = form.data['material']
+        multiplicador = {'Metais': 2, 'Eletronicos': 3, 'Plastico': 1}
+
+        if tipo_material not in multiplicador:
+            messages.error(request, 'Tipo de material inválido!')
+            print('Tipo de material inválido!')
+        else:
+            quantidade = int(form.data['quantidade'])
+            
+            # Tenta encontrar o documento existente para o cliente no MongoDB
+            cliente_doc = get_object_or_404(ClienteModel, cpf=cpf_usuario)
+            
+            # Atualiza o documento existente no MongoDB
+            cliente_doc.pontuacao = (cliente_doc.pontuacao or 0) + quantidade * multiplicador[tipo_material]
+            cliente_doc.save()
+
+            # Atualiza a pontuação no modelo do Django
+            if ccliente.pontuacao is None:
+                ccliente.pontuacao = 0
+            ccliente.pontuacao += quantidade * multiplicador[tipo_material]
+            ccliente.save()
+
+            messages.success(request, 'Produto cadastrado com sucesso!')
+            print('Produto cadastrado com sucesso!')
+
+    return render(request, 'produto.html')
+
+
+
 
 
 
