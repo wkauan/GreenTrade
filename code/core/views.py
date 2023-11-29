@@ -10,6 +10,8 @@ from django.contrib.auth import login as login_django
 from django.contrib.auth.decorators import login_required
 from .mongo_models import MongoClienteModel
 from django.shortcuts import get_object_or_404
+from django.db.models import Sum
+from django.core.exceptions import MultipleObjectsReturned
 
 # Create your views here.
 
@@ -83,46 +85,76 @@ def login(request):
 
 @login_required(login_url="/login")
 def pontos(request):
-    return render(request, 'index.html')
+    cpf_usuario = request.user.username
+    ccliente = None  # Inicializa ccliente fora do bloco try-except
+
+    # Recupera todos os documentos com o mesmo CPF no MongoDB
+    documentos = MongoClienteModel.objects.filter(cpf=cpf_usuario)
+
+    # Soma todos os pontos usando o método aggregate do Django
+    total_pontos = documentos.aggregate(Sum('pontuacao'))['pontuacao__sum'] or 0
+
+    try:
+        # Tenta obter o objeto ClienteModel
+        ccliente =MongoClienteModel.objects.get(cpf=cpf_usuario)
+        # Atualiza a pontuação se já existir
+        ccliente.pontuacao = total_pontos
+        ccliente.save()
+    except MongoClienteModel.DoesNotExist:
+        # Se não existir, cria um novo
+        ccliente = MongoClienteModel.objects.create(cpf=cpf_usuario, pontuacao=total_pontos)
+    except MultipleObjectsReturned:
+        # Se houver múltiplos objetos, escolha um (pode variar dependendo da lógica do seu aplicativo)
+        ccliente = MongoClienteModel.objects.filter(cpf=cpf_usuario).first()
+
+    print(f"Pontuação total do MongoDB: {total_pontos}")
+
+    # Passa ccliente para o contexto ao renderizar a página
+    return render(request, 'pontos.html', {'ccliente': ccliente, 'total_pontos':total_pontos})
 
 
 @login_required(login_url="/login")
 def produto(request):
     cpf_usuario = request.user.username
-    ccliente = ClienteModel.objects.get(cpf=cpf_usuario)
+    cclientes = ClienteModel.objects.filter(cpf=cpf_usuario)
+
+    if cclientes.exists():
+        ccliente = cclientes.first()  # Pega o primeiro objeto da queryset
+        if request.method == 'POST':
+            form = ProdutoForm(request.POST)
+            tipo_material = form.data['material']
+            multiplicador = {'Metais': 2, 'Eletronicos': 3, 'Plastico': 1}
+
+            if tipo_material not in multiplicador:
+                messages.error(request, 'Tipo de material inválido!')
+                print('Tipo de material inválido!')
+            else:
+                quantidade = int(form.data['quantidade'])
+
+                # Atualiza a pontuação no modelo do Django
+                if ccliente.pontuacao is None:
+                    ccliente.pontuacao = 0
+                ccliente.pontuacao += quantidade * multiplicador[tipo_material]
+                ccliente.save()
+
+                try:
+                    # Tenta obter o objeto correspondente no MongoDB
+                    cliente_doc = MongoClienteModel.objects.get(cpf=cpf_usuario)
+                except MongoClienteModel.MultipleObjectsReturned:
+                    # Se houver múltiplos objetos, escolha o primeiro (pode ajustar conforme necessário)
+                    cliente_doc = MongoClienteModel.objects.filter(cpf=cpf_usuario).first()
+                except MongoClienteModel.DoesNotExist:
+                    # Se não existir, cria um novo
+                    cliente_doc = MongoClienteModel.objects.create(cpf=cpf_usuario, pontuacao=str(quantidade * multiplicador[tipo_material]))
+
+                # Atualiza a pontuação no modelo do MongoDB
+                cliente_doc.pontuacao = str(int(cliente_doc.pontuacao or 0) + quantidade * multiplicador[tipo_material])
+                cliente_doc.save()
+
+                messages.success(request, 'Produto cadastrado com sucesso!')
+                print('Produto cadastrado com sucesso!')
     
-    if request.method == 'POST':
-        form = ProdutoForm(request.POST)
-        tipo_material = form.data['material']
-        multiplicador = {'Metais': 2, 'Eletronicos': 3, 'Plastico': 1}
-
-        if tipo_material not in multiplicador:
-            messages.error(request, 'Tipo de material inválido!')
-            print('Tipo de material inválido!')
-        else:
-            quantidade = int(form.data['quantidade'])
-            
-            # Tenta encontrar o documento existente para o cliente no MongoDB
-            cliente_doc = get_object_or_404(ClienteModel, cpf=cpf_usuario)
-            
-            # Atualiza o documento existente no MongoDB
-            cliente_doc.pontuacao = (cliente_doc.pontuacao or 0) + quantidade * multiplicador[tipo_material]
-            cliente_doc.save()
-
-            # Atualiza a pontuação no modelo do Django
-            if ccliente.pontuacao is None:
-                ccliente.pontuacao = 0
-            ccliente.pontuacao += quantidade * multiplicador[tipo_material]
-            ccliente.save()
-
-            messages.success(request, 'Produto cadastrado com sucesso!')
-            print('Produto cadastrado com sucesso!')
-
     return render(request, 'produto.html')
-
-
-
-
 
 
 
