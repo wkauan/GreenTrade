@@ -8,19 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>Login | GreenTrade</title>
+    <title>Trocas | GreenTrade</title>
 </head>
 
 <body class="fundo">
-    {% if messages %}
-    <div class="alert alert-danger" role="alert">
-        <ul class="mb-0">
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    {% endif %}
 
     <!-- Navbar -->
     <header>
@@ -56,20 +47,37 @@
         <h1 class="font-bold text-3xl text-center">Os produtos disponívels são</h1>
         <section class="p-8">
             <ul class="list-disc pl-4 space-y-8">
-                {% for empresa in empresas %}
-                <li><img src="">
-                    Macarrão - 10,00 pontos - Supermercado Delta
+                <li>
+                    Macarrão - 10 pontos - Supermercado Delta
+                    <img class="md:w-[5%] w-[20%] mt-2" src="{% static 'img/macarrao.png' %}">
                     <button id="botao" type="submit"
                         class="w-40 py-2 mt-5 mb-5 rounded-md bg-[#DBCB3A] font-bold text-lg hover:scale-105 transition-all">Comprar</button>
                 </li>
-                {% endfor %}
+                <li>
+                    Frango empanado - 15 pontos - Supermercado Favetta
+                    <img class="md:w-[5%] w-[20%] mt-2" src="{% static 'img/frango.png' %}">
+                    <button id="botao" type="submit"
+                        class="w-40 py-2 mt-5 mb-5 rounded-md bg-[#DBCB3A] font-bold text-lg hover:scale-105 transition-all">Comprar</button>
+                </li>
+                <li>
+                    Leite - 4 pontos - Supermercado Copacabana
+                    <img class="md:w-[5%] w-[20%] mt-2" src="{% static 'img/leite.png' %}">
+                    <button id="botao" type="submit"
+                        class="w-40 py-2 mt-5 mb-5 rounded-md bg-[#DBCB3A] font-bold text-lg hover:scale-105 transition-all">Comprar</button>
+                </li>
+                <li>
+                    Requeijão - 9 pontos - Supermercado Savegnado
+                    <img class="md:w-[5%] w-[20%] mt-2" src="{% static 'img/requeijao.png' %}">
+                    <button id="botao" type="submit"
+                        class="w-40 py-2 mt-5 mb-5 rounded-md bg-[#DBCB3A] font-bold text-lg hover:scale-105 transition-all">Comprar</button>
+                </li>
             </ul>
         </section>
     </div>
 
     <!-- footer -->
     <footer
-        class="w-full md:flex md:flex-row justify-around text-center bg-[#004B23] text-[#F0F0F0] left-0 space-y-4 md:space-y-0">
+        class="w-full md:flex md:flex-row justify-around text-center bg-[#004B23] text-[#F0F0F0] left-0 space-y-4 md:space-y-0 mt-[500px]">
         <dl>
             <dt class="font-bold">Telefone</dt>
             <dd><a class="hover:text-blue-200" href="tel:+55 (19) 99999-9999">(19) 99999-9999</a></dd>
