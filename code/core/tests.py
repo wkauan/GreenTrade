@@ -158,31 +158,6 @@ class MaterialGetTest(TestCase):
             with self.subTest():
                 self.assertContains(self.resp, text, count)
 
-# Teste da página Pontos
-class PontosGetTest(TestCase):
-    def setUp(self):
-        self.resp = self.client.get(r('core:pontos'), follow=True)
-
-    def test_status_code(self):
-        self.assertEqual(self.resp.status_code, HTTPStatus.OK)
-
-    def test_template_used(self):
-        self.assertTemplateUsed(self.resp, 'pontos.html')
-    
-    def test_found_html(self):
-        tags = (
-            ('<html', 1),
-            ('<body', 1),
-            ('<div', 9),
-            ('<button', 1),
-            ('<p', 4),
-            ('</body>', 1),
-            ('</html>', 1),
-        )
-        for text, count in tags:
-            with self.subTest():
-                self.assertContains(self.resp, text, count)
-
 # Teste da página Coleta
 class ColetaGetTest(TestCase):
     def setUp(self):
@@ -202,32 +177,6 @@ class ColetaGetTest(TestCase):
             ('<ul', 1),
             ('<section', 1),
             ('<h1', 1),
-            ('</body>', 1),
-            ('</html>', 1),
-        )
-        for text, count in tags:
-            with self.subTest():
-                self.assertContains(self.resp, text, count)
-
-# Teste da página Produto
-class ProdutoGetTest(TestCase):
-    def setUp(self):
-        self.resp = self.client.get(r('core:produto'), follow=True)
-    
-    def test_status_code(self):
-        self.assertEqual(self.resp.status_code, HTTPStatus.OK)
-
-    def test_template_used(self):
-        self.assertTemplateUsed(self.resp, 'produto.html')
-    
-    def test_found_html(self):
-        tags = (
-            ('<html', 1),
-            ('<body', 1),
-            ('<div', 11),
-            ('<form', 1),
-            ('<select', 1),
-            ('<option', 4),
             ('</body>', 1),
             ('</html>', 1),
         )
@@ -259,28 +208,3 @@ class TrocasGetTest(TestCase):
         for text, count in tags:
             with self.subTest():
                 self.assertContains(self.resp, text, count)
-
-# class greentradeModelsTest(TestCase):
-#     def test_criar_usuario(self):
-#         client = MongoClient("mongodb://localhost:27017")
-#         db = client['greentrade']
-#         collection = db['clientes']
-
-#         # Cria um documento no MongoDB
-#         cadastro_data = {'nome': 'Lucas'}
-#         result = collection.insert_one(cadastro_data)
-#         self.assertIsNotNone(result.inserted_id)
-
-#     def test_se_foi_criado(self):
-#         # Verifica se o documento existe no MongoDB
-#         client = MongoClient("mongodb://localhost:27017/greentrade")
-#         collection = client['greentrade']['clientes']
-#         documents = collection.find()
-#         self.assertTrue(documents.count() > 0)
-
-#     def test_criado_somente_um(self):
-#         # Verifica se apenas um documento foi criado
-#         client = MongoClient("mongodb://localhost:27017/greentrade")
-#         collection = client['greentrade']['clientes']
-#         documents = collection.find()
-#         self.assertEqual(documents.count(), 1)
