@@ -11,15 +11,6 @@
 </head>
 
 <body class="fundo font">
-    {% if messages %}
-    <div class="alert alert-danger" role="alert">
-        <ul class="mb-0">
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    {% endif %}
 
     <!-- Navbar -->
     <header>
@@ -55,29 +46,33 @@
         <h1 class="font-bold text-3xl text-center">Materiais recicláveis</h1>
         <div class="flex flex-row justify-around p-10 space-x-10">
             <section class="w-[33%]">
-                <img class="rounded-lg w-[100%] h-80 object-fill hover:scale-105 transition-all"
-                    src="{% static 'img/Metais_ferrosos.jpg' %}" alt="Metais ferrosos">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad dicta aliquam, dignissimos sunt maxime
-                    iste quisquam. Fuga, illum laborum, optio architecto accusantium vero fugiat amet earum delectus
-                    beatae distinctio laudantium.</p>
+                <img class="rounded-lg w-[100%] md:h-80 h-30 object-fill hover:scale-105 transition-all"
+                    src="{% static 'img/Materiais_Eletronicos.jpg' %}" alt="Meteriais Eletronicos">
+                <p>Reciclar materiais eletrônicos é essencial para mitigar os impactos ambientais negativos
+                    relacionados ao descarte inadequado desses dispositivos. A constante evolução tecnológica gera
+                    resíduos eletrônicos contendo substâncias tóxicas, cujo depósito em aterros sanitários pode
+                    contaminar o solo e a água, ameaçando ecossistemas e a saúde humana. [30 pontos]</p>
                 <a class="font-bold text-[#004B23] hover:underline hover:text-[#228B22] transition-all duration-200 delay-100"
                     href="{% url 'core:produto' %}">Deseja reciclar esse material?</a>
             </section>
             <section class="w-[33%]">
-                <img class="rounded-lg w-[100%] h-80 object-cover hover:scale-105 transition-all"
-                    src="{% static 'img/Materiais_Eletronicos.jpg' %}" alt="Materiais Eletronicos">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad dicta aliquam, dignissimos sunt maxime
-                    iste quisquam. Fuga, illum laborum, optio architecto accusantium vero fugiat amet earum delectus
-                    beatae distinctio laudantium.</p>
+                <img class="rounded-lg w-[100%] md:h-80 h-24 object-cover hover:scale-105 transition-all"
+                    src="{% static 'img/latas.jpg' %}" alt="Latas de aluminio">
+                <p>Reciclar latas de alumínio é uma prática crucial para mitigar os impactos ambientais negativos
+                    associados à produção e descarte desses materiais. As latas de alumínio são amplamente utilizadas em
+                    embalagens de bebidas, e o processo de reciclagem oferece benefícios significativos para o meio
+                    ambiente. [10 pontos]</p>
                 <a class="font-bold text-[#004B23] hover:underline hover:text-[#228B22] transition-all duration-200 delay-100"
                     href="{% url 'core:produto' %}">Deseja reciclar esse material?</a>
             </section>
             <section class="w-[33%]">
-                <img class="rounded-lg w-[100%] h-80 object-cover hover:scale-105 transition-all"
-                    src="{% static 'img/Plastico.jpg' %}" alt="Plastico">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad dicta aliquam, dignissimos sunt maxime
-                    iste quisquam. Fuga, illum laborum, optio architecto accusantium vero fugiat amet earum delectus
-                    beatae distinctio laudantium.</p>
+                <img class="rounded-lg w-[100%] md:h-80 h-24 object-cover hover:scale-105 transition-all"
+                    src="{% static 'img/garrafas.jpg' %}" alt="Garrafas pet">
+                <p>Reciclar garrafas PET é crucial para mitigar os impactos ambientais negativos associados ao descarte
+                    inadequado desses recipientes plásticos. As garrafas PET, compostas por polietileno tereftalato,
+                    levam centenas de anos para se decompor
+                    naturalmente, contribuindo para a poluição ambiental e representando uma ameaça aos ecossistemas.
+                    [20 pontos]</p>
                 <a class="font-bold text-[#004B23] hover:underline hover:text-[#228B22] transition-all duration-200 delay-100"
                     href="{% url 'core:produto' %}">Deseja reciclar esse material?</a>
             </section>
@@ -86,7 +81,7 @@
 
     <!-- footer -->
     <footer
-        class="w-full mt-40 md:flex md:flex-row justify-around text-center bg-[#004B23] text-[#F0F0F0] left-0 space-y-4 md:space-y-0">
+        class="w-full mt-40 md:flex md:flex-row justify-around text-center bg-[#004B23] text-[#F0F0F0] left-0 space-y-4 md:space-y-0 mt-[600px]">
         <dl>
             <dt class="font-bold">Telefone</dt>
             <dd><a class="hover:text-blue-200" href="tel:+55 (19) 99999-9999">(19) 99999-9999</a></dd>

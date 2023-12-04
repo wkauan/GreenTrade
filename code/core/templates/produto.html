@@ -12,15 +12,6 @@
 </head>
 
 <body class="fundo">
-  {% if messages %}
-  <div class="alert alert-danger" role="alert">
-    <ul class="mb-0">
-      {% for message in messages %}
-      <li>{{ message }}</li>
-      {% endfor %}
-    </ul>
-  </div>
-  {% endif %}
 
   <!-- Navbar -->
   <header>
@@ -63,9 +54,9 @@
           <div class="mb-5 flex justify-center">
             <select name="material" id="material" class="px-14 py-2 rounded-lg text-black" required>
               <option value="" disabled selected hidden>Tipo do material</option>
-              <option value="Metais">Metais</option>
-              <option value="Eletronicos">Eletronicos</option>
-              <option value="Plastico">Plastico</option>
+              <option value="Metais">Eletronicos</option>
+              <option value="Eletronicos">Latinhas</option>
+              <option value="Plastico">Garrafas PET</option>
             </select>
           </div>
 
