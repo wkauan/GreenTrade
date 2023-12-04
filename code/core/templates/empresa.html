@@ -12,15 +12,6 @@
 </head>
 
 <body class="fundo">
-  {% if messages %}
-  <div class="alert alert-danger" role="alert">
-    <ul class="mb-0">
-      {% for message in messages %}
-      <li>{{ message }}</li>
-      {% endfor %}
-    </ul>
-  </div>
-  {% endif %}
 
   <!-- Navbar -->
   <header>
@@ -61,37 +52,37 @@
 
           <!-- campo nome -->
           <div class="mb-5 flex justify-center">
-            <input type="text" minlength="7" maxlength="30" name="nome" id="nome"
-              class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Nome" required>
+            <input type="text" name="nome" id="nome" class="px-8 py-2 rounded-lg text-black placeholder:text-black"
+              placeholder="Nome" required>
           </div>
 
           <!-- campo CNPJ -->
           <div class="mb-5 flex justify-center">
-            <input type="text" minlength="14" maxlength="14" name="cnpj" id="cnpj"
-              class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="cnpj" required>
+            <input type="text" name="cnpj" id="cnpj" class="px-8 py-2 rounded-lg text-black placeholder:text-black"
+              placeholder="cnpj" required>
           </div>
 
           <!-- campo telefone -->
           <div class="mb-5 flex justify-center">
-            <input type="text" minlength="10" maxlength="11" name="telefone" id="telefone"
+            <input type="text" name="telefone" id="telefone"
               class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Telefone" required>
           </div>
 
           <!-- campo Endereço -->
           <div class="mb-5 flex justify-center">
-            <input type="text" minlength="5" maxlength="30" name="endereco" id="endereco"
+            <input type="text" name="endereco" id="endereco"
               class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Endereço" required>
           </div>
 
           <!-- campo E-mail -->
           <div class="mb-5 flex justify-center">
-            <input type="text" minlength="10" maxlength="50" name="email" id="email"
-              class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="E-mail" required>
+            <input type="text" name="email" id="email" class="px-8 py-2 rounded-lg text-black placeholder:text-black"
+              placeholder="E-mail" required>
           </div>
 
           <!-- campo Senha -->
           <div class="mb-5 flex justify-center">
-            <input type="password" minlength="10" maxlength="50" name="password" id="password"
+            <input type="password" name="password" id="password"
               class="px-8 py-2 rounded-lg text-black placeholder:text-black" placeholder="Senha" required>
           </div>
 
@@ -126,75 +117,6 @@
     <p>©GreenTrade. Todos os direitos reservados.</p>
   </div>
 
-  <script>
-    function validarCNPJ(CNPJ) {
-      CNPJ = CNPJ.replace(/[^\d]+/g, '');
-
-      if (CNPJ.length !== 14) {
-        return false;
-      }
-
-      if (/^(\d)\1+$/.test(CNPJ)) {
-        return false;
-      }
-
-      let soma = 0;
-      for (let i = 0; i < 9; i++) {
-        soma += parseInt(CNPJ.charAt(i)) * (10 - i);
-      }
-      let resto = 11 - (soma % 11);
-      let digitoVerificador = resto === 10 || resto === 11 ? 0 : resto;
-
-      if (digitoVerificador !== parseInt(CNPJ.charAt(9))) {
-        return false;
-      }
-
-      soma = 0;
-      for (let i = 0; i < 10; i++) {
-        soma += parseInt(CNPJ.charAt(i)) * (11 - i);
-      }
-      resto = 11 - (soma % 11);
-      digitoVerificador = resto === 10 || resto === 11 ? 0 : resto;
-
-      if (digitoVerificador !== parseInt(CNPJ.charAt(10))) {
-        return false;
-      }
-
-      return true;
-    }
-
-
-    // Função para validar o formulário antes do envio
-    function validarFormulario(event) {
-      var CNPJ = document.getElementById('CNPJ').value;
-    }
-
-
-    // Adiciona o evento de validação ao formulário
-    var form = document.getElementById('cadastroForm');
-    form.addEventListener('submit', validarFormulario);
-
-    function validarFormulario(event) {
-      var CNPJ = document.getElementById('CNPJ_cliente').value;
-      var nome = document.getElementById('nome').value;
-      var telefone = document.getElementById('telefone').value;
-
-      // Verifica se algum campo está vazio
-      if (CNPJ_cliente === '' ||
-        nome === '' ||
-        telefone === '') {
-        swal("Preenchimento obrigatório", "Por favor, preencha todos os campos", "warning");
-        event.preventDefault();
-      }
-      else {
-        if (!validarCNPJ(CNPJ)) {
-          swal("Campo inválido", "Por favor, informe um CNPJ válido!", "warning");
-          event.preventDefault();
-        }
-      }
-
-    } 
-  </script>
 </body>
 
 <script src="https://cdn.tailwindcss.com"></script>
