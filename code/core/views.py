@@ -13,6 +13,7 @@ from .mongo_models import MongoClienteModel
 from django.shortcuts import get_object_or_404
 from django.db.models import Sum
 from django.core.exceptions import MultipleObjectsReturned
+from validate_docbr import CPF, CNPJ
 
 # Create your views here.
 
@@ -21,11 +22,12 @@ def index(request):
 
 def cadastro(request):
     if request.method == 'POST':
-        form = ClienteForm(request.POST)       
-        if ClienteModel.objects.filter(cpf=form.data['cpf']).exists():
-            messages.error(request,'Este cliente já foi cadastrado!') 
-        elif len(form.data['cpf']) != 11:
-             messages.error(request,'O CPF informado é inválido!') 
+        form = ClienteForm(request.POST)
+        cpf_validator = CPF()
+        if not cpf_validator.validate(form.data['cpf']):
+            messages.error(request, 'CPF inválido!')
+        elif ClienteModel.objects.filter(cpf=form.data['cpf']).exists():
+            messages.error(request, 'Este cliente já foi cadastrado!')
         else:
             cliente = ClienteModel()
             cliente.cpf = form.data['cpf']
@@ -35,22 +37,20 @@ def cadastro(request):
             cliente.email = form.data['email']
             cliente.password = form.data['password']
             cliente.save()
-
             cliente = User.objects.create_user(username = form.data['cpf'], password = form.data ['password'])
             cliente.save()
-            
-
-                      
+   
     return render(request, 'cadastro.html')
 
 
 def empresa(request):
     if request.method == 'POST':
-        form = EmpresaForm(request.POST)       
-        if EmpresaModel.objects.filter(cnpj=form.data['cnpj']).exists():
-            messages.error(request,'Esta empresa já foi cadastrado!') 
-        elif len(form.data['cnpj']) != 14:
-             messages.error(request,'O CNPJ informado é inválido!') 
+        form = EmpresaForm(request.POST)
+        cnpj_validator = CNPJ()
+        if not cnpj_validator.validate(form.data['cnpj']):
+            messages.error(request, 'CNPJ inválido!')
+        elif EmpresaModel.objects.filter(cnpj=form.data['cnpj']).exists():
+            messages.error(request, 'Esta empresa já foi cadastrada!')
         else:
             empresa = EmpresaModel()
             empresa.cnpj = form.data['cnpj']
@@ -60,9 +60,9 @@ def empresa(request):
             empresa.email = form.data['email']
             empresa.password = form.data['password']
             empresa.save()
-
             empresa = User.objects.create_user(username = form.data['cnpj'], password = form.data ['password'])
             empresa.save()
+            messages.success(request, 'Cadastro realizado com sucesso!')
             
     return render(request, 'empresa.html')
 
@@ -92,7 +92,7 @@ def pontos(request):
     # Recupera todos os documentos com o mesmo CPF no MongoDB
     documentos = MongoClienteModel.objects.filter(cpf=cpf_usuario)
 
-    # Soma todos os pontos usando o método aggregate do Django
+    # Soma todos os pontos usando o método aggregate
     total_pontos = documentos.aggregate(Sum('pontuacao'))['pontuacao__sum'] or 0
 
     try:
@@ -124,7 +124,7 @@ def produto(request):
         if request.method == 'POST':
             form = ProdutoForm(request.POST)
             tipo_material = form.data['material']
-            multiplicador = {'Metais': 2, 'Eletronicos': 3, 'Plastico': 1}
+            multiplicador = {'Metais': 30, 'Eletronicos': 20, 'Plastico': 10}
 
             if tipo_material not in multiplicador:
                 messages.error(request, 'Tipo de material inválido!')
