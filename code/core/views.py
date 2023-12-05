@@ -105,7 +105,7 @@ def pontos(request):
         # Se não existir, cria um novo
         ccliente = MongoClienteModel.objects.create(cpf=cpf_usuario, pontuacao=total_pontos)
     except MultipleObjectsReturned:
-        # Se houver múltiplos objetos, escolha um (pode variar dependendo da lógica do seu aplicativo)
+        # Se houver múltiplos objetos escolha um 
         ccliente = MongoClienteModel.objects.filter(cpf=cpf_usuario).first()
 
     print(f"Pontuação total do MongoDB: {total_pontos}")
@@ -142,7 +142,7 @@ def produto(request):
                     # Tenta obter o objeto correspondente no MongoDB
                     cliente_doc = MongoClienteModel.objects.get(cpf=cpf_usuario)
                 except MongoClienteModel.MultipleObjectsReturned:
-                    # Se houver múltiplos objetos, escolha o primeiro (pode ajustar conforme necessário)
+                    # Se houver múltiplos objetos, escolha o primeiro
                     cliente_doc = MongoClienteModel.objects.filter(cpf=cpf_usuario).first()
                 except MongoClienteModel.DoesNotExist:
                     # Se não existir, cria um novo

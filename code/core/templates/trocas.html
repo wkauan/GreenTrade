@@ -45,19 +45,19 @@
     <!-- Corpo do site -->
     <form class="mx-auto" action="{% url 'core:trocas' %}" method="post" id="TrocasForm">
         {% csrf_token %}
-        <div class="block h-screen md:mt-40 mt-72">
+        <div class="block h-screen md:mt-30 mt-72">
             <h1 class="font-bold text-3xl text-center">Os produtos disponíveis são</h1>
-            <section class="p-8 grid grid-cols-2 gap-8">
+            <section class="p-8 grid grid-cols-2 gap-6">
                 <ul class="list-disc pl-4 space-y-8">
-                    <li class="border border-black border-opacity-40 p-4 flex flex-col items-center rounded-lg">
-                        Macarrão - 100 pontos - Supermercado Delta
+                    <li class="border border-black border-opacity-20 p-4 flex flex-col items-center rounded-lg">
+                        <strong>Macarrão - 100 pontos - Supermercado Delta</strong>
                         <img class="md:w-[15%] w-[40%] mt-2" src="{% static 'img/macarrao.png' %}"><br>
                         <input type="number" name="quantidade_produto_macarrao" class="px-9 py-2 text-center rounded-lg placeholder:text-black text-black" placeholder="Quantidade">
                         <input type="hidden" name="produto_macarrao" value="Macarrão">
                         <button type="submit" class="w-40 py-2 mt-5 mb-5 rounded-md bg-[#DBCB3A] font-bold text-lg hover:scale-105 transition-all">Comprar</button>
                     </li>
-                    <li class="border border-black border-opacity-40 p-4 flex flex-col items-center rounded-lg">
-                        Frango empanado - 150 pontos - Supermercado Favetta
+                    <li class="border border-black border-opacity-20 p-4 flex flex-col items-center rounded-lg">
+                        <strong>Frango empanado - 150 pontos - Supermercado Favetta</strong>
                         <img class="md:w-[15%] w-[40%] mt-2" src="{% static 'img/frango.png' %}"><br>
                         <input type="number" name="quantidade_produto_frango" class="px-9 py-2 text-center rounded-lg placeholder:text-black text-black" placeholder="Quantidade">
                         <input type="hidden" name="produto_frango" value="Frango Empanado">
@@ -65,15 +65,15 @@
                     </li>
                 </ul>
                 <ul class="list-disc pl-4 space-y-8">
-                    <li class="border border-black border-opacity-40 p-4 flex flex-col items-center rounded-lg">
-                        Leite - 40 pontos - Supermercado Copacabana
+                    <li class="border border-black border-opacity-20 p-4 flex flex-col items-center rounded-lg">
+                        <strong>Leite - 40 pontos - Supermercado Copacabana</strong>
                         <img class="md:w-[15%] w-[40%] mt-2" src="{% static 'img/leite.png' %}"><br>
                         <input type="number" name="quantidade_produto_leite" class="px-9 py-2 text-center rounded-lg placeholder:text-black text-black" placeholder="Quantidade">
                         <input type="hidden" name="produto_leite" value="Leite">
                         <button type="submit" class="w-40 py-2 mt-5 mb-5 rounded-md bg-[#DBCB3A] font-bold text-lg hover:scale-105 transition-all">Comprar</button>
                     </li>
-                    <li class="border border-black border-opacity-40 p-4 flex flex-col items-center rounded-lg">
-                        Requeijão - 90 pontos - Supermercado Savegnado
+                    <li class="border border-black border-opacity-20 p-4 flex flex-col items-center rounded-lg">
+                        <strong>Requeijão - 90 pontos - Supermercado Savegnado</strong>
                         <img class="md:w-[15%] w-[40%] mt-2" src="{% static 'img/requeijao.png' %}"><br>
                         <input type="number" name="quantidade_produto_requeijao" class="px-9 py-2 text-center rounded-lg placeholder:text-black text-black" placeholder="Quantidade">
                         <input type="hidden" name="produto_requeijao" value="Requeijão">
