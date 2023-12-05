@@ -172,7 +172,6 @@ def material(request):
 
 
 
-
 @login_required(login_url="/login")
 def trocas(request):
     cpf_usuario = request.user.username
@@ -180,6 +179,13 @@ def trocas(request):
 
     if request.method == 'POST':
         multiplicador = {'produto_macarrao': 100, 'produto_frango': 150, 'produto_leite': 40, 'produto_requeijao': 90}
+
+        documentos = MongoClienteModel.objects.filter(cpf=cpf_usuario)
+
+        # Soma todos os pontos usando o método aggregate
+        total_pontos = documentos.aggregate(Sum('pontuacao'))['pontuacao__sum'] or 0
+
+        print(f"Pontuação total do MongoDB: {total_pontos}")
 
         for produto in ['produto_macarrao', 'produto_frango', 'produto_leite', 'produto_requeijao']:
             quantidade_key = f'quantidade_{produto}'
@@ -189,26 +195,34 @@ def trocas(request):
                 except ValueError:
                     quantidade = 0  # Ou qualquer valor padrão que faça sentido no seu contexto
 
-                # Atualiza a pontuação no modelo do Django
-                if ccliente.pontuacao is None:
-                    ccliente.pontuacao = 0
-                ccliente.pontuacao -= quantidade * multiplicador[produto]
+                # Garante que a quantidade seja um número inteiro positivo
+                quantidade = max(0, quantidade)
 
-                # Tenta obter o objeto correspondente no MongoDB
-                cliente_doc = MongoClienteModel.objects.filter(cpf=cpf_usuario).first()
+                pontos_necessarios = quantidade * multiplicador[produto]
 
-                if cliente_doc:
-                    # Atualiza a pontuação no modelo do MongoDB
-                    cliente_doc.pontuacao = str(int(cliente_doc.pontuacao or 0) - quantidade * multiplicador[produto])
-                    cliente_doc.save()
+                if total_pontos >= pontos_necessarios:
+                    # Atualiza a pontuação no modelo do Django
+                    if ccliente.pontuacao is None:
+                        ccliente.pontuacao = 0
+                    ccliente.pontuacao -= pontos_necessarios
+
+                    # Tenta obter o objeto correspondente no MongoDB
+                    cliente_doc = MongoClienteModel.objects.filter(cpf=cpf_usuario).first()
+
+                    if cliente_doc:
+                        # Atualiza a pontuação no modelo do MongoDB
+                        cliente_doc.pontuacao = str(int(cliente_doc.pontuacao or 0) - pontos_necessarios)
+                        cliente_doc.save()
+                    else:
+                        print(f"Documento para cliente {cpf_usuario} não encontrado no MongoDB")
+
+                    messages.success(request, 'Troca realizada!')
+                    print('Troca realizada!')
                 else:
-                    
-                    print(f"Documento para cliente {cpf_usuario} não encontrado no MongoDB")
-
-                messages.success(request, 'Troca realizada!')
-                print('Troca realizada!')
+                    messages.error(request, 'Você não possui pontos suficientes para realizar esta troca.')
 
     return render(request, 'trocas.html')
+
 
 
 
