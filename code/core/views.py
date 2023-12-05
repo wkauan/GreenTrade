@@ -202,7 +202,7 @@ def trocas(request):
                     cliente_doc.pontuacao = str(int(cliente_doc.pontuacao or 0) - quantidade * multiplicador[produto])
                     cliente_doc.save()
                 else:
-                    # Se não houver documento existente, pode tratar isso de acordo com a lógica do seu aplicativo
+                    
                     print(f"Documento para cliente {cpf_usuario} não encontrado no MongoDB")
 
                 messages.success(request, 'Troca realizada!')
