@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import ClienteModel,EmpresaModel, LoginModel , ProdutoModel
-from .forms import ClienteForm,EmpresaForm, LoginForm , ProdutoForm
+from .models import ClienteModel,EmpresaModel, LoginModel , ProdutoModel, ProdutoModel
+from djongo import models
+from .forms import ClienteForm,EmpresaForm, LoginForm , ProdutoForm,TrocasForm
 from . import views
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
@@ -169,6 +170,57 @@ def ticket(request):
 def material(request):
     return render(request, 'material.html')
 
+
+
+@login_required(login_url="/login")
 def trocas(request):
+    cpf_usuario = request.user.username
+    cclientes = ClienteModel.objects.filter(cpf=cpf_usuario)
+
+    if cclientes.exists():
+        ccliente = cclientes.first()  # Pega o primeiro objeto da queryset
+        if request.method == 'POST':
+            multiplicador = {'produto_macarrao': 100, 'produto_requeijao': 40, 'produto_frango': 150, 'produto_leite': 40, 'produto_requeijao': 90}
+
+            for produto in ['produto_macarrao', 'produto_frango', 'produto_leite', 'produto_requeijao']:
+                quantidade_key = f'quantidade_{produto}'
+                if quantidade_key in request.POST:
+                    try:
+                        quantidade = int(request.POST[quantidade_key])
+                    except ValueError:
+                        quantidade = 0  # Ou qualquer valor padrão que faça sentido no seu contexto
+
+                    # Atualiza a pontuação no modelo do Django
+                    if ccliente.pontuacao is None:
+                        ccliente.pontuacao = 0
+                    ccliente.pontuacao -= quantidade * multiplicador[produto]
+                    ccliente.save()
+
+                    try:
+                        # Tenta obter o objeto correspondente no MongoDB
+                        cliente_doc = MongoClienteModel.objects.get(cpf=cpf_usuario)
+                    except MongoClienteModel.MultipleObjectsReturned:
+                        # Se houver múltiplos objetos, escolha o primeiro (pode ajustar conforme necessário)
+                        cliente_doc = MongoClienteModel.objects.filter(cpf=cpf_usuario).first()
+                    except MongoClienteModel.DoesNotExist:
+                        # Se não existir, cria um novo
+                        cliente_doc = MongoClienteModel.objects.create(cpf=cpf_usuario, pontuacao=str(quantidade * multiplicador[produto]))
+
+                    # Atualiza a pontuação no modelo do MongoDB
+                    cliente_doc.pontuacao = str(int(cliente_doc.pontuacao or 0) - quantidade * multiplicador[produto])
+                    cliente_doc.save()
+
+                    messages.success(request, 'Troca realizada!')
+                    print('Troca realizada!')
+
     return render(request, 'trocas.html')
+
+
+
+
+
+
+
+
+
 

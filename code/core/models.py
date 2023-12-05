@@ -29,3 +29,10 @@ class ProdutoModel(models.Model):
     eletronicos = models.CharField('eletronicos', max_length=14)
     plastico = models.CharField('plastico', max_length=14)
     quantidade = models.CharField('quantidade', max_length=14)
+
+class TrocasForm(models.Model):
+    produto_macarrao= models.CharField('produto_macarrao',max_length=14)
+    produto_frango= models.CharField('produto_frango',max_length=14)
+    produto_leite= models.CharField('produto_leite',max_length=14)
+    produto_requeijao= models.CharField('produto_requeijao',max_length=14)
+    quantidade = models.CharField('quantidade', max_length=14)

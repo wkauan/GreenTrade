@@ -1,6 +1,6 @@
 # core.forms
 from django import forms
-from .models import ClienteModel, EmpresaModel, LoginModel, ProdutoModel
+from .models import ClienteModel, EmpresaModel, LoginModel, ProdutoModel, TrocasForm
 from . import views  # Importe todo o módulo
 
 class ClienteForm(forms.ModelForm):
@@ -22,3 +22,8 @@ class ProdutoForm(forms.ModelForm):
     class Meta:
         model = ProdutoModel
         fields=['metais',  'eletronicos','plastico','quantidade']
+
+class TrocasForm(forms.ModelForm):
+    class Meta:
+        model = TrocasForm
+        fields=['produto_macarrao','produto_frango','produto_leite','produto_requeijao', 'quantidade']
