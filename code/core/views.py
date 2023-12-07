@@ -15,7 +15,7 @@ from django.db.models import Sum
 from django.core.exceptions import MultipleObjectsReturned
 from validate_docbr import CPF, CNPJ
 
-# Create your views here.
+# Create your views here
 
 def index(request):
     return render(request, "index.html")
@@ -86,8 +86,9 @@ def login(request):
 
 @login_required(login_url="/login")
 def pontos(request):
+    #assim que clica na pagina ele incia esse bloco de instrução se usar o botão atualizar ele vai direto para a lionha 119
     cpf_usuario = request.user.username
-    ccliente = None  # Inicializa ccliente fora do bloco try-except
+    ccliente = None  # Inicializa ccliente fora do bloco try-except para tratamento de exeções
 
     # Recupera todos os documentos com o mesmo CPF no MongoDB
     documentos = MongoClienteModel.objects.filter(cpf=cpf_usuario)
@@ -112,6 +113,18 @@ def pontos(request):
 
     # Passa ccliente para o contexto ao renderizar a página
     return render(request, 'pontos.html', {'ccliente': ccliente, 'total_pontos':total_pontos})
+
+
+     #caso esteja aberta a pagina de pontuação ao clicar no botão atualizar ele inicia direto esse bloco 
+    if request.method == 'POST':
+        # Reatualiza os pontos no caso de mudanças enquanto a página estava aberta
+        documentos = MongoClienteModel.objects.filter(cpf=cpf_usuario)
+        total_pontos = documentos.aggregate(Sum('pontuacao'))['pontuacao__sum'] or 0
+
+    # Passa ccliente para o contexto ao renderizar a página
+    return render(request, 'pontos.html', {'ccliente': ccliente, 'total_pontos': total_pontos})
+    
+    return render(request, 'pontos.html')     
 
 
 @login_required(login_url="/login")

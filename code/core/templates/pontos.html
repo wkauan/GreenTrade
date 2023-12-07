@@ -40,7 +40,7 @@
     </nav>
   </header>
 
-  <!-- Corpo do site -->
+    <!-- Corpo do site -->
   <div class="block h-screen md:mt-40 mt-72">
     <h1 class="font-bold text-3xl text-center">Verifique a sua pontuação</h1>
     <p class="mt-2 text-center"></p>
@@ -50,17 +50,21 @@
       <div class="text-center rounded-lg text-[#F0F0F0] w-80 h-auto bg-gradient-to-r from-[#004B23] to-green-700">
         <div>
           <p class="mt-5 text-[#F0F0F0]">Parabéns! {{ccliente.nome}}</p>
-          <p class="mt-5 text-[#F0F0F0]">Você possui {{total_pontos}} pontos</p>
+          <p id="pontuacao" class="mt-5 text-[#F0F0F0">Você possui {{total_pontos}} pontos</p>
         </div>
 
-        <!-- botão para atualizar -->
-        <div class="mb-3 text-center">
-          <button id="botao" type="submit"
-            class="w-40 py-2 mt-5 mb-5 rounded-md bg-[#DBCB3A] font-bold text-lg hover:scale-105 transition-all">Atualizar</button>
-        </div>
+        <!-- Formulário para atualizar pontos -->
+        <form method="post" action="{% url 'core:pontos' %}">
+          {% csrf_token %}
+          <div class="mb-3 text-center">
+            <button type="submit"
+              class="w-40 py-2 mt-5 mb-5 rounded-md bg-[#DBCB3A] font-bold text-lg hover:scale-105 transition-all">Atualizar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+
 
   <!-- footer -->
   <footer
