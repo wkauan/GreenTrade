@@ -5,8 +5,13 @@ O GreenTrade, uma iniciativa inovadora em prol da sustentabilidade, foi concebid
 ## Necessário para rodar o projeto
 - `Python`: Instale o python em [https://www.python.org/downloads/]
 - `Mongodb`: Instale o mongodb em [https://www.mongodb.com/try/download/community]
+- `NodeJS`: Instale o nodejs em [https://nodejs.org/en/download/current]
 
 ## Como executar o projeto
+```console
+    Abra o MongoDBCompass e crie um database com o nome de greentrade e uma colecão de mesmo nome (greentrade).
+    Após isso siga as instruções abaixo de acordo com seu sistema operacional.
+```
 
 ### Ambiente Windows:
 
@@ -17,6 +22,7 @@ python -m venv .venv
 .\.venv\Scripts\activate
 pip install -r requirements.txt
 cd code
+python manage.py migrate
 python manage.py runserver
 ```
 
@@ -31,6 +37,7 @@ virtualenv -p python3 venv
 source venv/bin/activate
 pip install -r requirements.txt
 cd code
+python manage.py migrate
 python manage.py runserver
 ```
 
