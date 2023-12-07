@@ -23,6 +23,10 @@ class EmpresaModel(models.Model):
     endereco = models.CharField('endereco', max_length=50,default='temp_endereco')
     email = models.CharField('email', max_length=30,default='temp@example.com')
     password = models.CharField('senha', max_length=15,default='temporary_hash')
+
+    class Meta:
+        verbose_name = "Empresa"
+        verbose_name_plural = "Empresas"
     
 class LoginModel(models.Model):
     cpf = models.CharField('cpf', max_length=11,default='temp_cpf')
