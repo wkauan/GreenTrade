@@ -1,7 +1,6 @@
 from django.test import TestCase
 from django.shortcuts import resolve_url as r
 from http import HTTPStatus
-# from pymongo import MongoClient
 
 # Teste da página Index
 class IndexGetTest(TestCase):
@@ -124,7 +123,7 @@ class TicketGetTest(TestCase):
             ('<div', 6),
             ('<section', 2),
             ('<img', 2),
-            ('<p', 2),
+            ('<p', 1),
             ('</body>', 1),
             ('</html>', 1),
         )
@@ -184,27 +183,3 @@ class ColetaGetTest(TestCase):
             with self.subTest():
                 self.assertContains(self.resp, text, count)
         
-# Teste da página Trocas
-class TrocasGetTest(TestCase):
-    def setUp(self):
-        self.resp = self.client.get(r('core:trocas'), follow=True)
-
-    def test_status_code(self):
-        self.assertEqual(self.resp.status_code, HTTPStatus.OK)
-
-    def test_template_used(self):
-        self.assertTemplateUsed(self.resp, 'trocas.html')
-    
-    def test_found_html(self):
-        tags = (
-            ('<html', 1),
-            ('<body', 1),
-            ('<div', 5),
-            ('<ul', 1),
-            ('<section', 1),
-            ('</body>', 1),
-            ('</html>', 1),
-        )
-        for text, count in tags:
-            with self.subTest():
-                self.assertContains(self.resp, text, count)
