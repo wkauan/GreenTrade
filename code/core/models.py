@@ -11,6 +11,10 @@ class ClienteModel(models.Model):
     password = models.CharField('senha', max_length=15,default='temporary_hash')
     pontuacao = models.IntegerField(default=0)
 
+    class Meta:
+        verbose_name = "Cliente"
+        verbose_name_plural = "Clientes"
+
 
 class EmpresaModel(models.Model):
     cnpj = models.CharField('cnpj',max_length=14)
